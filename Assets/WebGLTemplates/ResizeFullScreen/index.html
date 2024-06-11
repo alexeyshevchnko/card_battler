@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #unity-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        #unity-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #888888; /* Серый цвет фона */
+            z-index: -1; /* Поместить фон за холст */
+        }
+    </style>
+</head>
+<body>
+<div id="background"></div>
+<div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1" style="background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
+</div>
+
+<script src="Build/{{{ LOADER_FILENAME }}}"></script>
+<script>
+    function isMobileDevice() {
+        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+    }
+
+    function updateCanvasSize() {
+        var canvas = document.getElementById("unity-canvas");
+		var unityWidth = canvas.width;
+        var unityHeight = canvas.height;
+		
+        var aspectRatio = unityWidth / unityHeight;
+
+        var pageWidth = window.innerWidth;
+        var pageHeight = window.innerHeight;
+
+        var newWidth, newHeight;
+
+        if (isMobileDevice()) {
+            // Mobile device, enforce fullscreen and portrait mode
+            newHeight = pageHeight;
+            newWidth = newHeight * aspectRatio;
+            if (newWidth > pageWidth) {
+                newWidth = pageWidth;
+                newHeight = newWidth / aspectRatio;
+            }
+            canvas.style.width = pageWidth + "px";
+            canvas.style.height = pageHeight + "px";
+        } else {
+            // Desktop or mobile device in landscape mode
+            if ((pageWidth / pageHeight) < aspectRatio) {
+                newWidth = pageWidth;
+                newHeight = pageWidth / aspectRatio;
+            } else {
+                newWidth = pageHeight * aspectRatio;
+                newHeight = pageHeight;
+            }
+            canvas.style.width = newWidth + "px";
+            canvas.style.height = newHeight + "px";
+        }
+    }
+
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+        #if USE_THREADS
+        workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+        #endif
+        #if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+        #endif
+        #if MEMORY_FILENAME
+        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+        #endif
+        #if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+        #endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}}
+    });
+
+    updateCanvasSize();
+    window.addEventListener("resize", updateCanvasSize);
+</script>
+</body>
+</html>
