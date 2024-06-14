@@ -15,15 +15,15 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: edab650aca4b5854aa142de0fb1a0abe
+  m_GUID: a58ba362d2246fa478630972d825c720
   m_SerializeEntries:
   - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Scenes/battle_webgl_desktop
+    m_Address: Assets/Scenes/battle_webgl_desktop.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bbed581a0269a434283a3910eacc3d50
-    m_Address: Scenes/battle_webgl_mobile
+    m_Address: Assets/Scenes/battle_webgl_mobile.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: b2c7d9b2dc3768d479d7919837169a9b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0ed9d18d154c22b4b99f1dd22cd6ab66, type: 2}
-    - {fileID: 11400000, guid: 7e07d8af9af7e7f4abf6e730c03124e6, type: 2}
+    - {fileID: 11400000, guid: f74067cc223b10f429ce4d14ab7e4b44, type: 2}
+    - {fileID: 11400000, guid: c3b1a13280bfe3941a0656f3a740dd38, type: 2}
