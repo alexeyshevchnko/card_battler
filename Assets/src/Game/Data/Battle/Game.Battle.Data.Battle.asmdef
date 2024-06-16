@@ -1,0 +1,16 @@
+{
+    "name": "Game.Battle.Data.Battle",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a27ae3e7ac3e85c42bfa04099831b9bb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

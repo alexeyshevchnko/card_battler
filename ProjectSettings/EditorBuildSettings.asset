@@ -5,8 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Loader.unity
     guid: 03efcdfe65d79024298e1cfdd95fbe18
+  - enabled: 1
+    path: Assets/Scenes/battle_webgl_mobile.unity
+    guid: bbed581a0269a434283a3910eacc3d50
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: a988279befcd5884eaaf5bbcb1755756, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: a988279befcd5884eaaf5bbcb1755756,
+      type: 2}

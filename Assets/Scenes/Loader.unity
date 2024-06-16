@@ -148,9 +148,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 30844812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94c147ee960267e489e75851e6a857f7, type: 3}
+  m_Script: {fileID: 11500000, guid: ced96e7f5d890c4479d6b55a3c680652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneBattleWebglMobile: Assets/Scenes/battle_webgl_mobile.unity
+  _scenesBattleWebglDesktop: Assets/Scenes/battle_webgl_desktop.unity
 --- !u!4 &30844814
 Transform:
   m_ObjectHideFlags: 0
