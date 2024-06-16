@@ -11,7 +11,10 @@ namespace Game{
     
         void Start()
         {
-            LoadSceneBasedOnDevice();
+            //  LoadSceneBasedOnDevice();
+
+            //TODO
+            TestConfig conf = new TestConfig();
         }
     
         void LoadSceneBasedOnDevice()

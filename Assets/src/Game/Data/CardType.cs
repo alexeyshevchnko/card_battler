@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace Game.Data{
     
-    public enum HeroType 
+    public enum CardType 
     {
         Clubs1 = 1,
         Clubs2 = 2,
