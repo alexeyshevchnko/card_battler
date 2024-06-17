@@ -1,6 +1,6 @@
 ﻿
 namespace Game.Data.Battle{
-    public interface ICharge
+    public interface IChargeData
     {
         int GetAttack();
     }

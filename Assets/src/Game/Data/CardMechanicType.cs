@@ -1,10 +1,9 @@
 ﻿namespace Game.Data{
-    
     public enum CardMechanicType 
     {
+        Commander = 0,
         Hero = 1,
         Buff = 2,
-        Debuff = 3
+        DeBuff = 3
     }
-    
 }

@@ -3,9 +3,16 @@
 namespace Game.Data.Battle
 {
     [System.Serializable]
-    public class ChargeData : ICharge
+    public class ChargeData : IChargeData
     {
         [SerializeField] private int _attack;
+
+        public ChargeData() { }
+
+        public ChargeData(int attack)
+        {
+            _attack = attack;
+        }
 
         public int GetAttack() => _attack;
     }

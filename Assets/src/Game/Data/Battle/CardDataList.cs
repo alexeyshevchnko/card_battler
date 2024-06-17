@@ -9,6 +9,10 @@ namespace Game.Data.Battle
         [SerializeField] List<CardData> _cards;
 
         public IReadOnlyList<CardData> Cards => _cards;
-    }
 
+        public CardDataList(List<CardData> data)
+        { 
+            _cards = data;
+        }
+    }
 }
