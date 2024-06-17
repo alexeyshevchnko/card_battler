@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Game.Data.Battle.ReadOnly{
+﻿namespace Game.Data.Battle.ReadOnly{
     
     public interface IReadOnlyGenerateConfigs 
     {

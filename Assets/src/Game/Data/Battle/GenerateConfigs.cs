@@ -19,14 +19,14 @@ namespace Game.Data.Battle{
         public IReadOnlyCardActionList PlayerCardAction => _playerCardAction;
         public IReadOnlyCardActionList EnemyCardAction => _enemyCardAction;
 
-        private CommanderData _playerCommander;
-        private CommanderData _enemyCommander;
+        private readonly CommanderData _playerCommander;
+        private readonly CommanderData _enemyCommander;
 
-        private HeroListData _playerHeroesListList;
-        private HeroListData _enemyHeroesListList;
+        private readonly HeroListData _playerHeroesListList;
+        private readonly HeroListData _enemyHeroesListList;
 
-        private CardActionListData _playerCardAction;
-        private CardActionListData _enemyCardAction;
+        private readonly CardActionListData _playerCardAction;
+        private readonly CardActionListData _enemyCardAction;
 
 
         public GenerateConfigs()
