@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Data.Battle;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -14,7 +15,8 @@ namespace Game{
             //  LoadSceneBasedOnDevice();
 
             //TODO
-            TestConfig conf = new TestConfig();
+            var generateConfigs = new GenerateConfigs();
+            Debug.Log($" test configs  {generateConfigs.EnemyCardAction.CardActionList[0].GetName()}");
         }
     
         void LoadSceneBasedOnDevice()

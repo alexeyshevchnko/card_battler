@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Data.Battle.ReadOnly;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,7 @@ namespace Game.Data.Battle{
         [SerializeField] protected int _fullAttack;
 
         protected event UnityAction<int> ChangedFullAttackEvent;
-        public IReadOnlyList<ChargeData> GetCharges() => _charges;
+        public IReadOnlyList<IChargeData> GetCharges() => _charges;
         public int GetHealth() => _health;
         public int GetFullAttack() => _fullAttack;
 

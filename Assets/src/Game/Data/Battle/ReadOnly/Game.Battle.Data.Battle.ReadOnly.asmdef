@@ -1,8 +1,7 @@
 {
-    "name": "Game.Battle.Data.Battle",
+    "name": "Game.Battle.Data.Battle.ReadOnly",
     "rootNamespace": "",
     "references": [
-        "GUID:ad113872712f5d4448770eacff1e3290",
         "GUID:f92376f03c493844da0fd975c5d733f0"
     ],
     "includePlatforms": [],

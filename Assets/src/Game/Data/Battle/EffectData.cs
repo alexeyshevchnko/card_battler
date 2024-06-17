@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Game.Data.Battle.ReadOnly;
+using Game.Data.Types;
 using UnityEngine;
 
 namespace Game.Data.Battle{

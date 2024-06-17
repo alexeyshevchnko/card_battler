@@ -1,4 +1,6 @@
-﻿using UnityEngine; 
+﻿using Game.Data.Battle.ReadOnly;
+using Game.Data.Types;
+using UnityEngine; 
 
 namespace Game.Data.Battle
 {
