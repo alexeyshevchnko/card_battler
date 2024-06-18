@@ -12,11 +12,11 @@ namespace Game{
     
         void Start()
         {
-            //  LoadSceneBasedOnDevice();
-
             //TODO
             var generateConfigs = new GenerateConfigs();
             Debug.Log($" test configs  {generateConfigs.EnemyCardAction.CardActionList[0].GetName()}");
+
+            LoadSceneBasedOnDevice();
         }
     
         void LoadSceneBasedOnDevice()
@@ -29,7 +29,8 @@ namespace Game{
         
         bool IsMobileDevice()
         {
-            return Application.isMobilePlatform || (Application.platform == RuntimePlatform.IPhonePlayer) || (Application.platform == RuntimePlatform.Android);
+            return false;
+            ///Application.isMobilePlatform || (Application.platform == RuntimePlatform.IPhonePlayer) || (Application.platform == RuntimePlatform.Android);
         }
         
         void OnSceneLoaded(AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance> obj)
