@@ -1,9 +1,8 @@
 {
-    "name": "Game",
+    "name": "Game.Battle.UI.ViewBinders",
     "rootNamespace": "",
     "references": [
-        "GUID:9e24947de15b9834991c9d8411ea37cf",
-        "GUID:84651a3751eca9349aac36a66bba901b"
+        "GUID:ad113872712f5d4448770eacff1e3290"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

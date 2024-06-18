@@ -17,13 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: a58ba362d2246fa478630972d825c720
   m_SerializeEntries:
-  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Assets/Scenes/battle_webgl_desktop.unity
+  - m_GUID: bbed581a0269a434283a3910eacc3d50
+    m_Address: Assets/Scenes/battle_webgl_mobile.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bbed581a0269a434283a3910eacc3d50
-    m_Address: Assets/Scenes/battle_webgl_mobile.unity
+  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
+    m_Address: Assets/Scenes/battle_webgl_desktop.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -1,4 +1,4 @@
-﻿using Game.Data.Battle;
+﻿//using Game.Data.Battle;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -13,8 +13,8 @@ namespace Game{
         void Start()
         {
             //TODO
-            var generateConfigs = new GenerateConfigs();
-            Debug.Log($" test configs  {generateConfigs.EnemyCardAction.CardActionList[0].GetName()}");
+            //var generateConfigs = new GenerateConfigs();
+            //Debug.Log($" test configs  {generateConfigs.EnemyCardAction.CardActionList[0].GetName()}");
 
             LoadSceneBasedOnDevice();
         }
@@ -23,7 +23,7 @@ namespace Game{
         {
             string sceneAddress = IsMobileDevice() ? _sceneBattleWebglMobile : _scenesBattleWebglDesktop;
 
-            
+            Debug.Log("start LoadSceneAsync "+ sceneAddress);
             Addressables.LoadSceneAsync(sceneAddress).Completed += OnSceneLoaded;
         }
         
@@ -34,6 +34,7 @@ namespace Game{
         
         void OnSceneLoaded(AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance> obj)
         {
+            Debug.Log("OnSceneLoaded LoadSceneAsync " + obj);
             if (obj.Status == AsyncOperationStatus.Succeeded)
             {
                 Debug.Log("Scene loaded successfully!");

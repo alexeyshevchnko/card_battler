@@ -7,6 +7,7 @@ namespace Game.Data.Battle{
     
     public class GenerateConfigs: IReadOnlyGenerateConfigs
     {
+        public const int DECK_CARD_COUNT = 5;
         private const int MAX_HERO_COUNT = 5;
         private const int COMMANDER_HP = 30;
 
@@ -43,13 +44,13 @@ namespace Game.Data.Battle{
             _playerCardAction = GenerateCardAction(countCardAction);
             _enemyCardAction = GenerateCardAction(countCardAction);
 
-            // Debug.LogError($"{_playerCardAction.GetJson()}");
+             Debug.Log($"{_playerCardAction.GetJson()}");
             //
             // Debug.LogError(PlayerCardAction.CardActionList[0].GetEffectData()[0].GetValue());
             //
             // Debug.LogError(_playerHeroesListList.GetJson());
             //
-            // Debug.LogError($"PlayerCommander = {_playerCommander.GetJson()} EnemyCommander = {_enemyCommander.GetJson()}");
+            //Debug.Log($"GenerateConfigs   PlayerCommander = {_playerCommander.GetJson()} EnemyCommander = {_enemyCommander.GetJson()}");
         }
 
 

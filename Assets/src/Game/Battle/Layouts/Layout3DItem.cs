@@ -8,11 +8,7 @@ namespace Game.Battle.Layouts{
     {
         [SerializeField] Renderer _render;
         
-        private Transform _myTrans;
-        private GameObject _myGo;
-        internal Renderer Render => _render;
-        internal Transform MyTrans => _myTrans;
-        internal GameObject MyGO => _myGo;
+        internal Renderer Render => _render; 
 
         internal Bounds Bounds => _render.bounds;
 
@@ -22,10 +18,13 @@ namespace Game.Battle.Layouts{
             Init();
         }
 
-        internal void Init()
+        private void OnEnable()
         {
-            _myTrans = transform;
-            _myGo = gameObject;
+            Init();
+        }
+
+        internal void Init()
+        { 
 
             if (_render == null)
             {

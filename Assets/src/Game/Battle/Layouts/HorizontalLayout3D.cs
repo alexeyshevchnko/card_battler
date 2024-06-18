@@ -24,7 +24,7 @@ namespace Game.Battle.Layouts
         [SerializeField] private bool _rotateObjects = false;
 
         private Layout3DItem[] _objectsToLayout;
-
+        private bool _isInit = false;
 
         private void OnEnable()
         {
@@ -56,30 +56,37 @@ namespace Game.Battle.Layouts
         {
             if (!Application.isPlaying)
             {
+                Init();
                 Recalculate();
             }
         }
 
         public void Recalculate()
         {
+            // Init();
             UpdateObjectsToLayout();
             LayoutObjects();
         }
 
         private void OnTransformChildrenChanged()
         {
-            Init();
+            // Init();
             Recalculate();
         }
 
         private void Init()
         {
-            int childCount = transform.childCount;
-            for (int i = 0; i < childCount; i++)
+            if (!_isInit)
             {
-                var trans = transform.GetChild(i);
-                var item = trans.GetComponent<Layout3DItem>();
-                item.Init();
+                int childCount = transform.childCount;
+                for (int i = 0; i < childCount; i++)
+                {
+                    var trans = transform.GetChild(i);
+                    var item = trans.GetComponent<Layout3DItem>();
+                    item.Init();
+                }
+        
+                _isInit = true;
             }
         }
 
@@ -109,10 +116,10 @@ namespace Game.Battle.Layouts
 
             foreach (var obj in _objectsToLayout)
             {
-                if (obj.MyGO.activeInHierarchy)
+                if (obj.gameObject.activeInHierarchy)
                 {
                     if (!_rotateObjects)
-                        obj.MyTrans.rotation = Quaternion.identity;
+                        obj.transform.rotation = Quaternion.identity;
 
                     if (obj.Render != null)
                     {
@@ -127,7 +134,7 @@ namespace Game.Battle.Layouts
                                 break;
                         }
 
-                        obj.MyTrans.localPosition = new Vector3(currentX + obj.Bounds.extents.x, yPosition, 0);
+                        obj.transform.localPosition = new Vector3(currentX + obj.Bounds.extents.x, yPosition, 0);
                         currentX += obj.Bounds.size.x + _spacing;
                     }
                     else
@@ -143,7 +150,7 @@ namespace Game.Battle.Layouts
             float totalWidth = 0;
             foreach (var obj in _objectsToLayout)
             {
-                if (obj.MyGO.activeInHierarchy)
+                if (obj.gameObject.activeInHierarchy)
                 {
                     Renderer render = obj.Render;
                     if (render != null)

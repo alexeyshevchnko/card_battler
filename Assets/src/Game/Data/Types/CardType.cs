@@ -35,7 +35,7 @@ namespace Game.Data.Types{
     public static class DataConfig
     {
         public const int COMMANDER_MIN_ID = 16;
-        public const int COMMANDER_MAX_ID = 23;
+        public const int COMMANDER_MAX_ID = 20;
 
         public const int HERO_MIN_ID = 11;
         public const int HERO_MAX_ID = 15;

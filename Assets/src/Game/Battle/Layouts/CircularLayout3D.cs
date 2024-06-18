@@ -64,7 +64,7 @@ namespace Game.Battle.Layouts
                     for (int i = 0; i < _objectsToLayout.Length; i++)
                     {
                         Layout3DItem obj = _objectsToLayout[i];
-                        obj.MyTrans.rotation = Quaternion.identity;
+                        obj.transform.rotation = Quaternion.identity;
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace Game.Battle.Layouts
                     item.Init();
                 } 
 
-                if (item.MyGO.activeInHierarchy)
+                if (item.gameObject.activeInHierarchy)
                 {
                     activeObjects.Add(item);
                 }
@@ -133,7 +133,7 @@ namespace Game.Battle.Layouts
             for (int i = 0; i < objectsCount; i++)
             {
                 Layout3DItem obj = _objectsToLayout[i];
-                if (obj.MyGO.activeInHierarchy)
+                if (obj.gameObject.activeInHierarchy)
                 {
                     float angle = initialAngle + i * angleDelta;
 
@@ -157,12 +157,12 @@ namespace Game.Battle.Layouts
                     Vector3 localPosition = CalculatePositionOnCircle(angle);
                     Vector3 worldPosition = centerPosition + localPosition;
                     worldPosition.z = _offsetZ * i;
-                    obj.MyTrans.position = worldPosition;
+                    obj.transform.position = worldPosition;
 
                     if (_rotateObjects)
                     {
                         Vector3 direction = worldPosition - centerPosition;
-                        obj.MyTrans.rotation = Quaternion.LookRotation(Vector3.forward, direction.normalized);
+                        obj.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction.normalized);
                     }
                 }
             }
