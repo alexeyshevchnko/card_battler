@@ -29,8 +29,7 @@ namespace Game{
         
         bool IsMobileDevice()
         {
-            return false;
-            ///Application.isMobilePlatform || (Application.platform == RuntimePlatform.IPhonePlayer) || (Application.platform == RuntimePlatform.Android);
+            return Application.isMobilePlatform || (Application.platform == RuntimePlatform.IPhonePlayer) || (Application.platform == RuntimePlatform.Android);
         }
         
         void OnSceneLoaded(AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance> obj)
