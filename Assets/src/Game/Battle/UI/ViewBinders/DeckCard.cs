@@ -22,11 +22,11 @@ namespace Game.Battle.UI.ViewBinders {
 
         private void UpdateView() {
             _effectValTxt.text = _data.FirstEffect.Value.ToString();
-            _nameTxt.text = _data.GetName();
-            _lvlTxt.text = _data.GetLevel().ToString();
+            _nameTxt.text = _data.Name;
+            _lvlTxt.text = _data.Level.ToString();
 
             for (int i = 0; i < _starsIcons.Count; i++) {
-                var isEnable = i <= _data.GetStars();
+                var isEnable = i <= _data.Stars;
                 _starsIcons[i].enabled = isEnable;
             }
         }

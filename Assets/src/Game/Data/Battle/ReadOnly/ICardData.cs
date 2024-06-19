@@ -1,10 +1,8 @@
-﻿
-using System.Collections.Generic;
-using UnityEngine.Events;
+﻿using Game.Data.Base;
 
 namespace Game.Data.Battle.ReadOnly {
     public interface ICardData : IBaseICardData {
-        int GetLevel();
-        int GetStars();
+        int Level { get; }
+        int Stars { get; }
     }
 }

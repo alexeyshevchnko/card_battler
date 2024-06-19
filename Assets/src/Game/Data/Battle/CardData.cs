@@ -12,11 +12,11 @@ namespace Game.Data.Battle {
         [SerializeField] protected CardType _cardType;
         [SerializeField] protected CardMechanicType _cardMechanicType;
 
-        public string GetName() => _name;
-        public int GetLevel() => _level;
-        public int GetStars() => _stars;
-        public CardType GetCardType() => _cardType;
-        public CardMechanicType GetCardMechanicType() => _cardMechanicType;
+        public string Name => _name;
+        public int Level => _level;
+        public int Stars => _stars;
+        public CardType CardType => _cardType;
+        public CardMechanicType CardMechanicType => _cardMechanicType;
     }
 
 }

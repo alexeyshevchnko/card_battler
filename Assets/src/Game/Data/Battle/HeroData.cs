@@ -12,9 +12,9 @@ namespace Game.Data.Battle {
         [SerializeField] protected int _fullAttack;
 
         protected event UnityAction<int> ChangedFullAttackEvent;
-        public IReadOnlyList<IChargeData> GetCharges() => _charges;
-        public int GetHealth() => _health;
-        public int GetFullAttack() => _fullAttack;
+        public IReadOnlyList<IChargeData> Charges => _charges;
+        public int Health => _health;
+        public int FullAttack => _fullAttack;
 
         public HeroData() {
             ChangedFullAttackEvent += OnChangedFullAttack;

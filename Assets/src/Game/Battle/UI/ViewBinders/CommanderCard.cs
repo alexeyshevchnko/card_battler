@@ -8,8 +8,8 @@ namespace Game.Battle.UI.ViewBinders {
         [SerializeField] UnityEngine.UI.Text _nameTxt;
 
         public void Bind(ICommanderData data) {
-            _hpTxt.text = data.GetHealth().ToString();
-            _nameTxt.text = data.GetName();
+            _hpTxt.text = data.Health.ToString();
+            _nameTxt.text = data.Name;
         }
     }
 

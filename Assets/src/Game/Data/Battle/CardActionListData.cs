@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Game.Data.Base;
 using Game.Data.Battle.ReadOnly;
 using UnityEngine;
 

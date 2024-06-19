@@ -1,4 +1,5 @@
-﻿using Game.Data.Battle.ReadOnly;
+﻿using Game.Data.Base;
+using Game.Data.Battle.ReadOnly;
 using Game.Data.Types;
 using UnityEngine;
 
@@ -11,10 +12,10 @@ namespace Game.Data.Battle {
         [SerializeField] protected CardType _cardType;
         [SerializeField] protected CardMechanicType _cardMechanicType;
 
-        public string GetName() => _name;
-        public CardType GetCardType() => _cardType;
-        public CardMechanicType GetCardMechanicType() => _cardMechanicType;
-        public int GetHealth() => _health;
+        public string Name => _name;
+        public CardType CardType => _cardType;
+        public CardMechanicType CardMechanicType => _cardMechanicType;
+        public int Health => _health;
 
         public void SetJson(string val) {
             CommanderData temp = JsonUtility.FromJson<CommanderData>(val);
