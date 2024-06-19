@@ -1788,9 +1788,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afafa9aabaf9c247bea61c8f29667ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCommanderView: {fileID: 8375023518502583293}
-  _enemyCommanderView: {fileID: 4885107985533797422}
-  _playerDeckCardList: {fileID: 7994484933594650916}
+  _playerCommander: {fileID: 8375023518502583293}
+  _enemyCommander: {fileID: 4885107985533797422}
+  _playerHandCards: {fileID: 7994484933594650916}
 --- !u!4 &1672041805
 Transform:
   m_ObjectHideFlags: 0
@@ -3848,9 +3848,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b01c5dddb47c834280a3b61397211fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDeckCardPref: {fileID: 1584398284844464032, guid: 5c7735f9f7c4eb44cb885e92e768fbe0,
+  _playerCardPref: {fileID: 1584398284844464032, guid: 5c7735f9f7c4eb44cb885e92e768fbe0,
     type: 3}
-  _layoutDeck: {fileID: 2843504345906936554}
+  _rootHand: {fileID: 2843504345906936554}
+  _rootDeck: {fileID: 0}
+  _rootDiscardPile: {fileID: 0}
 --- !u!1 &8117516005315314189
 GameObject:
   m_ObjectHideFlags: 0

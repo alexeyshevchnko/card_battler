@@ -1,7 +1,6 @@
-﻿
-namespace Game.Data.Types{
-    public enum CardType 
-    {
+﻿namespace Game.Data.Types {
+
+    public enum CardType {
         //EFFECTS
         //buff
         Clubs1 = 1,
@@ -9,6 +8,7 @@ namespace Game.Data.Types{
         Clubs3 = 3,
         Clubs4 = 4,
         Clubs5 = 5,
+
         //debuff
         Diamonds1 = 6,
         Diamonds2 = 7,
@@ -32,8 +32,7 @@ namespace Game.Data.Types{
     }
 
 
-    public static class DataConfig
-    {
+    public static class DataConfig {
         public const int COMMANDER_MIN_ID = 16;
         public const int COMMANDER_MAX_ID = 20;
 
@@ -42,5 +41,6 @@ namespace Game.Data.Types{
 
         public const int EFFECT_MIN_ID = 1;
         public const int EFFECT_MAX_ID = 10;
-    } 
+    }
+
 }

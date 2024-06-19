@@ -2,36 +2,27 @@
 using Game.Data.Battle;
 using UnityEngine;
 
-namespace Game.Battle{
-    
-    public class MatchController : MonoBehaviour
-    {
-        [SerializeField] private CommanderCardBind _playerCommanderView;
-        [SerializeField] private CommanderCardBind _enemyCommanderView;
-        [SerializeField] private PlayerDeckCardListBind _playerDeckCardList;
+namespace Game.Battle {
+
+    public class MatchController : MonoBehaviour {
+        [SerializeField] private CommanderCard _playerCommander;
+        [SerializeField] private CommanderCard _enemyCommander;
+        [SerializeField] private PlayerHandCards _playerHandCards;
         private GenerateConfigs _counfig;
 
-        void Awake()
-        {
+        void Awake() {
             _counfig = new GenerateConfigs();
-            _playerCommanderView.Bind(_counfig.PlayerCommander);
-            _enemyCommanderView.Bind(_counfig.EnemyCommander);
+            _playerCommander.Bind(_counfig.PlayerCommander);
+            _enemyCommander.Bind(_counfig.EnemyCommander);
 
-            _playerDeckCardList.Bind(_counfig.PlayerCardAction, GenerateConfigs.DECK_CARD_COUNT);
-            
+            _playerHandCards.Init(_counfig.PlayerCardAction, GenerateConfigs.HAND_CART_COUNT);
+
 
             UpdateView();
         }
 
-        void UpdateView()
-        {
+        void UpdateView() { }
 
-        }
-        
-        void Update()
-        {
-            
-        }
+        void Update() { }
     }
-    
 }

@@ -1,4 +1,3 @@
-﻿public interface ISerializationData
-{
+﻿public interface ISerializationData {
     string GetJson();
 }

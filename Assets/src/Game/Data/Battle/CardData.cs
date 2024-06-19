@@ -1,12 +1,11 @@
 ﻿using Game.Data.Battle.ReadOnly;
 using Game.Data.Types;
-using UnityEngine; 
+using UnityEngine;
 
-namespace Game.Data.Battle
-{
+namespace Game.Data.Battle {
+
     [System.Serializable]
-    public class CardData : ICardData
-    {
+    public class CardData : ICardData {
         [SerializeField] protected string _name;
         [SerializeField] protected int _stars;
         [SerializeField] protected int _level;
@@ -19,4 +18,5 @@ namespace Game.Data.Battle
         public CardType GetCardType() => _cardType;
         public CardMechanicType GetCardMechanicType() => _cardMechanicType;
     }
+
 }

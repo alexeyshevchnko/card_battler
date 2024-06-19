@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Game.Battle.Layouts
-{
+namespace Game.Battle.Layouts {
 
 #if UNITY_EDITOR
     [ExecuteInEditMode]
 #endif
-    public class CircularLayout3D : MonoBehaviour
-    {
-        private enum Alignment
-        {
+    public class CircularLayout3D : MonoBehaviour {
+        private enum Alignment {
             Top,
             Bottom,
             Right,
@@ -27,8 +24,7 @@ namespace Game.Battle.Layouts
 
         private Layout3DItem[] _objectsToLayout;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             Recalculate();
 
 #if UNITY_EDITOR
@@ -36,33 +32,26 @@ namespace Game.Battle.Layouts
 #endif
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
 #if UNITY_EDITOR
             EditorApplication.update -= OnEditorUpdate;
 #endif
         }
 
 #if UNITY_EDITOR
-        private void OnEditorUpdate()
-        {
-            if (!Application.isPlaying)
-            {
+        private void OnEditorUpdate() {
+            if (!Application.isPlaying) {
                 Recalculate();
             }
         }
 #endif
 
-        private void OnValidate()
-        {
-            if (!Application.isPlaying)
-            {
+        private void OnValidate() {
+            if (!Application.isPlaying) {
                 Recalculate();
 
-                if (!_rotateObjects)
-                {
-                    for (int i = 0; i < _objectsToLayout.Length; i++)
-                    {
+                if (!_rotateObjects) {
+                    for (int i = 0; i < _objectsToLayout.Length; i++) {
                         Layout3DItem obj = _objectsToLayout[i];
                         obj.transform.rotation = Quaternion.identity;
                     }
@@ -70,48 +59,40 @@ namespace Game.Battle.Layouts
             }
         }
 
-        public void Recalculate()
-        {
+        public void Recalculate() {
             UpdateObjectsToLayout();
             LayoutObjects();
         }
 
-        private void OnTransformChildrenChanged()
-        {
+        private void OnTransformChildrenChanged() {
             Init();
             Recalculate();
         }
 
 
-        private void Init()
-        {
+        private void Init() {
             int childCount = transform.childCount;
 
-            for (int i = 0; i < childCount; i++)
-            {
+            for (int i = 0; i < childCount; i++) {
                 var trans = transform.GetChild(i);
                 var item = trans.GetComponent<Layout3DItem>();
                 item.Init();
             }
         }
 
-        private void UpdateObjectsToLayout()
-        {
+        private void UpdateObjectsToLayout() {
             int childCount = transform.childCount;
             var activeObjects = new List<Layout3DItem>();
 
-            for (int i = 0; i < childCount; i++)
-            {
+            for (int i = 0; i < childCount; i++) {
                 var trans = transform.GetChild(i);
                 var item = trans.GetComponent<Layout3DItem>();
-                if (item == null)
-                {
+                if (item == null) {
                     item = trans.gameObject.AddComponent<Layout3DItem>();
                     item.Init();
-                } 
+                }
 
-                if (item.gameObject.activeInHierarchy)
-                {
+                if (item.gameObject.activeInHierarchy) {
                     activeObjects.Add(item);
                 }
             }
@@ -119,8 +100,7 @@ namespace Game.Battle.Layouts
             _objectsToLayout = activeObjects.ToArray();
         }
 
-        private void LayoutObjects()
-        {
+        private void LayoutObjects() {
             float angleDelta = _spacingAngle * Mathf.Deg2Rad;
             float startAngle = Mathf.Deg2Rad;
             Vector3 centerPosition = transform.position;
@@ -130,15 +110,12 @@ namespace Game.Battle.Layouts
             var offset = Mathf.Deg2Rad * (_angleOffset);
             float initialAngle = startAngle + (offset * Mathf.PI - totalAngle) / 2.0f;
 
-            for (int i = 0; i < objectsCount; i++)
-            {
+            for (int i = 0; i < objectsCount; i++) {
                 Layout3DItem obj = _objectsToLayout[i];
-                if (obj.gameObject.activeInHierarchy)
-                {
+                if (obj.gameObject.activeInHierarchy) {
                     float angle = initialAngle + i * angleDelta;
 
-                    switch (_alignment)
-                    {
+                    switch (_alignment) {
                         case Alignment.Top:
                             angle += Mathf.PI / 2.0f;
                             break;
@@ -159,8 +136,7 @@ namespace Game.Battle.Layouts
                     worldPosition.z = _offsetZ * i;
                     obj.transform.position = worldPosition;
 
-                    if (_rotateObjects)
-                    {
+                    if (_rotateObjects) {
                         Vector3 direction = worldPosition - centerPosition;
                         obj.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction.normalized);
                     }
@@ -168,16 +144,14 @@ namespace Game.Battle.Layouts
             }
         }
 
-        private Vector3 CalculatePositionOnCircle(float angleRadians)
-        {
+        private Vector3 CalculatePositionOnCircle(float angleRadians) {
             float x = Mathf.Cos(angleRadians) * _radius;
             float y = Mathf.Sin(angleRadians) * _radius;
 
             return new Vector3(x, y, 0);
         }
 
-        private void OnDrawGizmos()
-        {
+        private void OnDrawGizmos() {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _radius);
         }

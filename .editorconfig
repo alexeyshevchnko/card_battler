@@ -1,0 +1,27 @@
+root = true
+
+[*.cs]
+# C# files
+
+# Set brace style to K&R style
+resharper_csharp_brace_style_in_if_else = end_of_line
+resharper_csharp_brace_style_in_for = end_of_line
+resharper_csharp_brace_style_in_foreach = end_of_line
+resharper_csharp_brace_style_in_while = end_of_line
+resharper_csharp_brace_style_in_do_while = end_of_line
+resharper_csharp_brace_style_in_fixed = end_of_line
+resharper_csharp_brace_style_in_lock = end_of_line
+resharper_csharp_brace_style_in_using = end_of_line
+resharper_csharp_brace_style_in_namespace = end_of_line
+resharper_csharp_brace_style_in_type = end_of_line
+resharper_csharp_brace_style_in_constructor = end_of_line
+resharper_csharp_brace_style_in_method = end_of_line
+resharper_csharp_brace_style_in_property = end_of_line
+resharper_csharp_brace_style_in_event = end_of_line
+resharper_csharp_brace_style_in_accessor = end_of_line
+resharper_csharp_brace_style_in_anonymous_method = end_of_line
+resharper_csharp_brace_style_in_anonymous_function = end_of_line
+resharper_csharp_brace_style_in_query_expression = end_of_line
+resharper_csharp_brace_style_in_array_initializer = end_of_line
+resharper_csharp_brace_style_in_object_initializer = end_of_line
+resharper_csharp_brace_style_in_collection_initializer = end_of_line

@@ -1,7 +1,6 @@
-﻿namespace Game.Data.Battle.ReadOnly{
-    
-    public interface IReadOnlyGenerateConfigs 
-    {
+﻿namespace Game.Data.Battle.ReadOnly {
+
+    public interface IReadOnlyGenerateConfigs {
         ICommanderData PlayerCommander { get; }
         ICommanderData EnemyCommander { get; }
 

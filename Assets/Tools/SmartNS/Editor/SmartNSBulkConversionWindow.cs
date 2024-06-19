@@ -5,15 +5,14 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace GraviaSoftware.SmartNS.SmartNS.Editor
-{
-    public class SmartNSBulkConversionWindow : EditorWindow
-    {
+namespace GraviaSoftware.SmartNS.SmartNS.Editor {
+
+    public class SmartNSBulkConversionWindow : EditorWindow {
         [MenuItem("Window/SmartNS/Bulk Namespace Conversion...")]
-        static void Init()
-        {
+        static void Init() {
             // Get existing open window or if none, make a new one:
-            SmartNSBulkConversionWindow window = (SmartNSBulkConversionWindow)EditorWindow.GetWindow(typeof(SmartNSBulkConversionWindow));
+            SmartNSBulkConversionWindow window =
+                (SmartNSBulkConversionWindow) EditorWindow.GetWindow(typeof(SmartNSBulkConversionWindow));
             window.titleContent = new GUIContent("Bulk Namespace Converter");
             window.Show();
         }
@@ -35,33 +34,27 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor
         private HashSet<string> _ignoredDirectories;
 
 
-        private static string GetClickedDirFullPath()
-        {
-            if (Selection.assetGUIDs.Length > 0)
-            {
+        private static string GetClickedDirFullPath() {
+            if (Selection.assetGUIDs.Length > 0) {
                 var clickedAssetGuid = Selection.assetGUIDs[0];
                 var clickedPath = AssetDatabase.GUIDToAssetPath(clickedAssetGuid);
                 var clickedPathFull = Path.Combine(Directory.GetCurrentDirectory(), clickedPath);
 
                 FileAttributes attr = File.GetAttributes(clickedPathFull);
 
-                if (attr.HasFlag(FileAttributes.Directory))
-                {
+                if (attr.HasFlag(FileAttributes.Directory)) {
                     // This is a directory. Return it.
                     return clickedPath;
                 }
-                else
-                {
+                else {
                     // Strip off the file name.
                     var lastForwardSlashIndex = clickedPath.LastIndexOf('/');
                     var lastBackSlashIndex = clickedPath.LastIndexOf('\\');
 
-                    if (lastForwardSlashIndex >= 0)
-                    {
+                    if (lastForwardSlashIndex >= 0) {
                         return clickedPath.Substring(0, lastForwardSlashIndex);
                     }
-                    else if (lastBackSlashIndex >= 0)
-                    {
+                    else if (lastBackSlashIndex >= 0) {
                         return clickedPath.Substring(0, lastBackSlashIndex);
                     }
 
@@ -72,15 +65,12 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor
             return null;
         }
 
-        void OnGUI()
-        {
-            if (string.IsNullOrWhiteSpace(_baseDirectory))
-            {
+        void OnGUI() {
+            if (string.IsNullOrWhiteSpace(_baseDirectory)) {
                 _baseDirectory = GetClickedDirFullPath();
             }
 
-            if (string.IsNullOrWhiteSpace(_baseDirectory))
-            {
+            if (string.IsNullOrWhiteSpace(_baseDirectory)) {
                 _baseDirectory = "Assets";
             }
 
@@ -88,7 +78,8 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor
 
 
             int yPos = 20;
-            GUI.Box(new Rect(0, yPos, position.width, 220), @"This tool will automatically add or correct the namespaces on any C# scripts in your project, making them consistent with your SmartNS settings.
+            GUI.Box(new Rect(0, yPos, position.width, 220),
+                    @"This tool will automatically add or correct the namespaces on any C# scripts in your project, making them consistent with your SmartNS settings.
 
 BE CAREFUL!
 
@@ -106,14 +97,13 @@ See the Documentation.txt file for more information on this. But in general, you
 
             yPos += 100;
 
-            var baseDirectoryLabel = new GUIContent(string.Format("Base Directory: {0}", _baseDirectory), "SmartNS will search all scripts in, or below, this directory. Use this to limit the search to a subdirectory.");
+            var baseDirectoryLabel = new GUIContent(string.Format("Base Directory: {0}", _baseDirectory),
+                                                    "SmartNS will search all scripts in, or below, this directory. Use this to limit the search to a subdirectory.");
 
-            if (GUI.Button(new Rect(3, yPos, position.width - 6, 20), baseDirectoryLabel))
-            {
+            if (GUI.Button(new Rect(3, yPos, position.width - 6, 20), baseDirectoryLabel)) {
                 var fullPath = EditorUtility.OpenFolderPanel("Choose root folder", _baseDirectory, "");
                 _baseDirectory = fullPath.Replace(Application.dataPath, "Assets").Trim();
-                if (string.IsNullOrWhiteSpace(_baseDirectory))
-                {
+                if (string.IsNullOrWhiteSpace(_baseDirectory)) {
                     _baseDirectory = "Assets";
                 }
             }
@@ -123,16 +113,15 @@ See the Documentation.txt file for more information on this. But in general, you
 
 
 
-            if (!_isProcessing)
-            {
+            if (!_isProcessing) {
                 var submitButtonContent = new GUIContent("Begin Namespace Conversion", "Begin processing scripts");
                 var submitButtonStyle = new GUIStyle(GUI.skin.button);
                 submitButtonStyle.normal.textColor = new Color(0, .5f, 0);
-                if (GUI.Button(new Rect(position.width / 2 - 350 / 2, yPos, 350, 30), submitButtonContent, submitButtonStyle))
-                {
-                    string assetBasePath = (string.IsNullOrWhiteSpace(_baseDirectory) ? "Assets" : _baseDirectory).Trim();
-                    if (!assetBasePath.EndsWith("/"))
-                    {
+                if (GUI.Button(new Rect(position.width / 2 - 350 / 2, yPos, 350, 30), submitButtonContent,
+                               submitButtonStyle)) {
+                    string assetBasePath =
+                        (string.IsNullOrWhiteSpace(_baseDirectory) ? "Assets" : _baseDirectory).Trim();
+                    if (!assetBasePath.EndsWith("/")) {
                         assetBasePath += "/";
                     }
 
@@ -140,17 +129,21 @@ See the Documentation.txt file for more information on this. But in general, you
                     _assetsToProcess = GetAssetsToProcess(assetBasePath);
 
                     if (EditorUtility.DisplayDialog("Are you sure?",
-                        string.Format("This will process a total of {0} scripts found in or under the '{1}' directory, updating their namespaces based on your current SmartNS settings. You should back up your project before doing this, in case something goes wrong. Are you sure you want to do this?", _assetsToProcess.Count, assetBasePath),
-                        string.Format("I'm sure. Process {0} scripts", _assetsToProcess.Count),
-                        "Cancel"))
-                    {
+                                                    string.Format(
+                                                        "This will process a total of {0} scripts found in or under the '{1}' directory, updating their namespaces based on your current SmartNS settings. You should back up your project before doing this, in case something goes wrong. Are you sure you want to do this?",
+                                                        _assetsToProcess.Count, assetBasePath),
+                                                    string.Format("I'm sure. Process {0} scripts",
+                                                                  _assetsToProcess.Count),
+                                                    "Cancel")) {
                         var smartNSSettings = SmartNSSettings.GetSerializedSettings();
                         _scriptRootSettingsValue = smartNSSettings.FindProperty("m_ScriptRoot").stringValue;
                         _prefixSettingsValue = smartNSSettings.FindProperty("m_NamespacePrefix").stringValue;
-                        _universalNamespaceSettingsValue = smartNSSettings.FindProperty("m_UniversalNamespace").stringValue;
+                        _universalNamespaceSettingsValue =
+                            smartNSSettings.FindProperty("m_UniversalNamespace").stringValue;
                         _useSpacesSettingsValue = smartNSSettings.FindProperty("m_IndentUsingSpaces").boolValue;
                         _numberOfSpacesSettingsValue = smartNSSettings.FindProperty("m_NumberOfSpaces").intValue;
-                        _directoryDenyListSettingsValue = smartNSSettings.FindProperty("m_DirectoryIgnoreList").stringValue;
+                        _directoryDenyListSettingsValue =
+                            smartNSSettings.FindProperty("m_DirectoryIgnoreList").stringValue;
                         _enableDebugLogging = smartNSSettings.FindProperty("m_EnableDebugLogging").boolValue;
 
                         // Cache this once now, for performance reasons.
@@ -165,13 +158,12 @@ See the Documentation.txt file for more information on this. But in general, you
             }
 
 
-            if (_isProcessing)
-            {
+            if (_isProcessing) {
                 var cancelButtonContent = new GUIContent("Cancel", "Cancel script conversion");
                 var cancelButtonStyle = new GUIStyle(GUI.skin.button);
                 cancelButtonStyle.normal.textColor = new Color(.5f, 0, 0);
-                if (GUI.Button(new Rect(position.width / 2 - 50 / 2, yPos, 50, 30), cancelButtonContent, cancelButtonStyle))
-                {
+                if (GUI.Button(new Rect(position.width / 2 - 50 / 2, yPos, 50, 30), cancelButtonContent,
+                               cancelButtonStyle)) {
                     _isProcessing = false;
                     _progressCount = 0;
                     AssetDatabase.Refresh();
@@ -180,25 +172,26 @@ See the Documentation.txt file for more information on this. But in general, you
 
                 yPos += 40;
 
-                if (_progressCount < _assetsToProcess.Count)
-                {
-                    EditorGUI.ProgressBar(new Rect(3, yPos, position.width - 6, 20), (float)_progressCount / (float)_assetsToProcess.Count, string.Format("Processing {0} ({1}/{2})", _assetsToProcess[_progressCount], _progressCount, _assetsToProcess.Count));
+                if (_progressCount < _assetsToProcess.Count) {
+                    EditorGUI.ProgressBar(new Rect(3, yPos, position.width - 6, 20),
+                                          (float) _progressCount / (float) _assetsToProcess.Count,
+                                          string.Format("Processing {0} ({1}/{2})", _assetsToProcess[_progressCount],
+                                                        _progressCount, _assetsToProcess.Count));
                     Log("Processing " + _assetsToProcess[_progressCount]);
 
                     SmartNS.UpdateAssetNamespace(_assetsToProcess[_progressCount],
-                        _scriptRootSettingsValue,
-                        _prefixSettingsValue,
-                        _universalNamespaceSettingsValue,
-                        _useSpacesSettingsValue,
-                        _numberOfSpacesSettingsValue,
-                        _directoryDenyListSettingsValue,
-                        _enableDebugLogging,
-                        directoryIgnoreList: _ignoredDirectories);
+                                                 _scriptRootSettingsValue,
+                                                 _prefixSettingsValue,
+                                                 _universalNamespaceSettingsValue,
+                                                 _useSpacesSettingsValue,
+                                                 _numberOfSpacesSettingsValue,
+                                                 _directoryDenyListSettingsValue,
+                                                 _enableDebugLogging,
+                                                 directoryIgnoreList: _ignoredDirectories);
 
                     _progressCount++;
                 }
-                else
-                {
+                else {
                     // We done. 
                     _isProcessing = false;
                     _ignoredDirectories = null;
@@ -210,12 +203,10 @@ See the Documentation.txt file for more information on this. But in general, you
 
         }
 
-        private List<string> GetAssetsToProcess(string assetBasePath)
-        {
+        private List<string> GetAssetsToProcess(string assetBasePath) {
             var ignoredDirectories = SmartNS.GetIgnoredDirectories();
 
-            Func<string, bool> isInIgnoredDirectory = (assetPath) =>
-            {
+            Func<string, bool> isInIgnoredDirectory = (assetPath) => {
                 var indexOfAsset = Application.dataPath.LastIndexOf("Assets");
                 var fullFilePath = Application.dataPath.Substring(0, indexOfAsset) + assetPath;
                 var fileInfo = new FileInfo(fullFilePath);
@@ -224,25 +215,23 @@ See the Documentation.txt file for more information on this. But in general, you
             };
 
             return AssetDatabase.GetAllAssetPaths()
-                    .Where(s => s.EndsWith(".cs", StringComparison.OrdinalIgnoreCase)
-                        // We ALWAYS require that the scripts be within Assets, regardless of anything else. We don't want to clobber Packages, for example.
-                        && s.StartsWith("Assets", StringComparison.OrdinalIgnoreCase)
-                        && s.StartsWith(assetBasePath, StringComparison.OrdinalIgnoreCase)
-                        && !isInIgnoredDirectory(s)).ToList();
+                                .Where(s => s.EndsWith(".cs", StringComparison.OrdinalIgnoreCase)
+                                            // We ALWAYS require that the scripts be within Assets, regardless of anything else. We don't want to clobber Packages, for example.
+                                            && s.StartsWith("Assets", StringComparison.OrdinalIgnoreCase)
+                                            && s.StartsWith(assetBasePath, StringComparison.OrdinalIgnoreCase)
+                                            && !isInIgnoredDirectory(s)).ToList();
         }
 
-        void Update()
-        {
-            if (_isProcessing)
-            {
+        void Update() {
+            if (_isProcessing) {
                 // Without this, we don't get updates every frame, and the whole window just creeps along.
                 Repaint();
             }
         }
 
-        private void Log(string message)
-        {
+        private void Log(string message) {
             Debug.Log(string.Format("[SmartNS] {0}", message));
         }
     }
+
 }

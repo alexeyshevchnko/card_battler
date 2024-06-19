@@ -1,7 +1,6 @@
 ﻿
-namespace Game.Data.Battle.ReadOnly{
-    public interface IChargeData
-    {
+namespace Game.Data.Battle.ReadOnly {
+    public interface IChargeData {
         int GetAttack();
     }
 }

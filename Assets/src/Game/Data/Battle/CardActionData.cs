@@ -2,15 +2,14 @@
 using Game.Data.Battle.ReadOnly;
 using UnityEngine;
 
-namespace Game.Data.Battle{
+namespace Game.Data.Battle {
     [System.Serializable]
-    public class CardActionData : CardData, ICardActionData
-    {
+    public class CardActionData : CardData, ICardActionData {
         [SerializeField] List<EffectData> _effects;
-        public IReadOnlyList<IEffectData> GetEffectData() => _effects;
+        public IReadOnlyList<IEffectData> Effects => _effects;
+        public IEffectData FirstEffect => _effects[0];
 
-        public void SetJson(string val)
-        {
+        public void SetJson(string val) {
             var temp = JsonUtility.FromJson<CardActionData>(val);
             _name = temp._name;
             _stars = temp._stars;

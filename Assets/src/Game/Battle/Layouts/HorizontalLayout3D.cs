@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace Game.Battle.Layouts
-{
+namespace Game.Battle.Layouts {
 
 #if UNITY_EDITOR
     [ExecuteInEditMode]
 #endif
-    public class HorizontalLayout3D : MonoBehaviour
-    {
-        private enum Alignment
-        {
+    public class HorizontalLayout3D : MonoBehaviour {
+        private enum Alignment {
             Left,
             Center,
             Right,
@@ -26,8 +23,7 @@ namespace Game.Battle.Layouts
         private Layout3DItem[] _objectsToLayout;
         private bool _isInit = false;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             Recalculate();
 
 #if UNITY_EDITOR
@@ -35,72 +31,59 @@ namespace Game.Battle.Layouts
 #endif
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
 #if UNITY_EDITOR
             EditorApplication.update -= OnEditorUpdate;
 #endif
         }
 
 #if UNITY_EDITOR
-        private void OnEditorUpdate()
-        {
-            if (!Application.isPlaying)
-            {
+        private void OnEditorUpdate() {
+            if (!Application.isPlaying) {
                 Recalculate();
             }
         }
 #endif
 
-        private void OnValidate()
-        {
-            if (!Application.isPlaying)
-            {
+        private void OnValidate() {
+            if (!Application.isPlaying) {
                 Init();
                 Recalculate();
             }
         }
 
-        public void Recalculate()
-        {
+        public void Recalculate() {
             // Init();
             UpdateObjectsToLayout();
             LayoutObjects();
         }
 
-        private void OnTransformChildrenChanged()
-        {
+        private void OnTransformChildrenChanged() {
             // Init();
             Recalculate();
         }
 
-        private void Init()
-        {
-            if (!_isInit)
-            {
+        private void Init() {
+            if (!_isInit) {
                 int childCount = transform.childCount;
-                for (int i = 0; i < childCount; i++)
-                {
+                for (int i = 0; i < childCount; i++) {
                     var trans = transform.GetChild(i);
                     var item = trans.GetComponent<Layout3DItem>();
                     item.Init();
                 }
-        
+
                 _isInit = true;
             }
         }
 
-        private void UpdateObjectsToLayout()
-        {
+        private void UpdateObjectsToLayout() {
             int childCount = transform.childCount;
             _objectsToLayout = new Layout3DItem[childCount];
 
-            for (int i = 0; i < childCount; i++)
-            {
+            for (int i = 0; i < childCount; i++) {
                 var trans = transform.GetChild(i);
                 var item = trans.GetComponent<Layout3DItem>();
-                if (item == null)
-                {
+                if (item == null) {
                     item = trans.gameObject.AddComponent<Layout3DItem>();
                     item.Init();
                 }
@@ -109,23 +92,18 @@ namespace Game.Battle.Layouts
             }
         }
 
-        private void LayoutObjects()
-        {
+        private void LayoutObjects() {
             float totalWidth = CalculateTotalWidth();
             float currentX = CalculateInitialX(totalWidth);
 
-            foreach (var obj in _objectsToLayout)
-            {
-                if (obj.gameObject.activeInHierarchy)
-                {
+            foreach (var obj in _objectsToLayout) {
+                if (obj.gameObject.activeInHierarchy) {
                     if (!_rotateObjects)
                         obj.transform.rotation = Quaternion.identity;
 
-                    if (obj.Render != null)
-                    {
+                    if (obj.Render != null) {
                         float yPosition = _verticalOffset;
-                        switch (_alignment)
-                        {
+                        switch (_alignment) {
                             case Alignment.CenterBottom:
                                 yPosition += obj.Bounds.extents.y;
                                 break;
@@ -137,24 +115,19 @@ namespace Game.Battle.Layouts
                         obj.transform.localPosition = new Vector3(currentX + obj.Bounds.extents.x, yPosition, 0);
                         currentX += obj.Bounds.size.x + _spacing;
                     }
-                    else
-                    {
+                    else {
                         Debug.LogError($"Object {obj.name} does not have a Render component.");
                     }
                 }
             }
         }
 
-        private float CalculateTotalWidth()
-        {
+        private float CalculateTotalWidth() {
             float totalWidth = 0;
-            foreach (var obj in _objectsToLayout)
-            {
-                if (obj.gameObject.activeInHierarchy)
-                {
+            foreach (var obj in _objectsToLayout) {
+                if (obj.gameObject.activeInHierarchy) {
                     Renderer render = obj.Render;
-                    if (render != null)
-                    {
+                    if (render != null) {
                         totalWidth += render.bounds.size.x + _spacing;
                     }
                 }
@@ -163,10 +136,8 @@ namespace Game.Battle.Layouts
             return totalWidth - _spacing;
         }
 
-        private float CalculateInitialX(float totalWidth)
-        {
-            switch (_alignment)
-            {
+        private float CalculateInitialX(float totalWidth) {
+            switch (_alignment) {
                 case Alignment.Left:
                     return 0;
                 case Alignment.Center:

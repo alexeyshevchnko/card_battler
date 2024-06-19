@@ -1,38 +1,30 @@
 using UnityEngine;
 
-public class ScreenManager : MonoBehaviour
-{
+public class ScreenManager : MonoBehaviour {
+
     private int _lastScreenWidth;
     private int _lastScreenHeight;
 
-    void Start()
-    {
+    void Start() {
         UpdateScreen();
     }
 
-    void Update()
-    {
-        if (Screen.width != _lastScreenWidth || Screen.height != _lastScreenHeight)
-        {
+    void Update() {
+        if (Screen.width != _lastScreenWidth || Screen.height != _lastScreenHeight) {
             UpdateScreen();
         }
     }
 
-    void UpdateScreen()
-    {
-        if (SystemInfo.deviceType == DeviceType.Handheld)
-        {
-            if (Screen.width > Screen.height)
-            {
+    void UpdateScreen() {
+        if (SystemInfo.deviceType == DeviceType.Handheld) {
+            if (Screen.width > Screen.height) {
                 HandleLandscapeMode();
             }
-            else
-            {
+            else {
                 HandlePortraitMode();
             }
         }
-        else
-        {
+        else {
             HandleDesktopMode();
         }
 
@@ -40,18 +32,16 @@ public class ScreenManager : MonoBehaviour
         _lastScreenHeight = Screen.height;
     }
 
-    void HandleLandscapeMode()
-    {
+    void HandleLandscapeMode() {
         Debug.Log("Landscape mode");
     }
 
-    void HandlePortraitMode()
-    {
+    void HandlePortraitMode() {
         Debug.Log("Portrait mode");
     }
 
-    void HandleDesktopMode()
-    {
+    void HandleDesktopMode() {
         Debug.Log("Desktop mode");
     }
+
 }
