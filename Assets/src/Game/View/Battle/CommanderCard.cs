@@ -1,4 +1,4 @@
-﻿using Game.Model.Data.ReadOnly;
+﻿using Game.Model.Interface;
 using UnityEngine;
 
 namespace Game.View.Battle{

@@ -1,4 +1,4 @@
-﻿using Game.Model.Data.ReadOnly;
+﻿using Game.Model.Source;
 using UnityEngine;
 
 namespace Shared.Common{

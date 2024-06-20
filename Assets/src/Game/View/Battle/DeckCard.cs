@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Game.Model.Data.ReadOnly;
+using Game.Model.Interface;
 using UnityEngine;
 using UnityEngine.UI;
 

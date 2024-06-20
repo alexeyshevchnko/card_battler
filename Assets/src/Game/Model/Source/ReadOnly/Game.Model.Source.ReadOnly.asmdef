@@ -1,10 +1,7 @@
 {
-    "name": "Game.View.Battle",
+    "name": "Game.Model.Source.ReadOnly",
     "rootNamespace": "",
-    "references": [
-        "GUID:5fc7edcf5d8982b4fbb6819556d0e946",
-        "GUID:ad113872712f5d4448770eacff1e3290"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

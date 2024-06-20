@@ -1,5 +1,4 @@
-﻿using Game.Model.Data.Battle;
-using Game.Model.Data.Source;
+﻿using Game.Model.Source;
 using UnityEngine;
 
 namespace Game.View.Battle{
