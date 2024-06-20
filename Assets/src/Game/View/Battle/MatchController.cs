@@ -7,13 +7,13 @@ namespace Game.View.Battle{
         [SerializeField] private CommanderCard _playerCommander;
         [SerializeField] private CommanderCard _enemyCommander;
         [SerializeField] private PlayerHandCards _playerHandCards;
-        private Configs _counfig;
+        private LocalSource _counfig;
 
         void Awake() {
-            _counfig = new Configs();
+            _counfig = new LocalSource();
             _playerCommander.Bind(_counfig.PlayerCommander);
             _enemyCommander.Bind(_counfig.EnemyCommander);
-            _playerHandCards.Init(_counfig.PlayerHead, Configs.HAND_CART_COUNT);
+            _playerHandCards.Init(_counfig.PlayerHead, LocalSource.HAND_CART_COUNT);
 
             UpdateView();
         }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Game.Model.Source{
 
-    public class Configs : IConfigs {
+    public class LocalSource : ILocalSource {
         public const int HAND_CART_COUNT = 5;
         private const int MAX_HERO_COUNT = 5;
         private const int COMMANDER_HP = 30;
@@ -37,7 +37,7 @@ namespace Game.Model.Source{
         private readonly ActionCards _enemyHead;//
 
 
-        public Configs() {
+        public LocalSource() {
             Debug.Log($"generate configs.....");
 
             var countHero = Random.Range(1, MAX_HERO_COUNT + 1);

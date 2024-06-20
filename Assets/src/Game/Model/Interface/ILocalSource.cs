@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Game.Model.Interface;
 
-namespace Game.Model.Source{
+namespace Game.Model.Interface{
 
-    public interface IConfigs {
+    public interface ILocalSource {
         ICommander PlayerCommander { get; }
         ICommander EnemyCommander { get; }
 

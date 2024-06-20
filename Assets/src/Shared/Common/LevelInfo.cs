@@ -1,16 +1,16 @@
-﻿using Game.Model.Source;
+﻿using Game.Model.Interface;
 using UnityEngine;
 
 namespace Shared.Common{
     
     public static class LevelInfo {
         private static int _level;
-        private static IConfigs _startData;
+        private static ILocalSource _startData;
 
         public static int Level => _level;
-        public static IConfigs StartData => _startData;
+        public static ILocalSource StartData => _startData;
 
-        public static void LevelStart(int lvl, IConfigs startData) {
+        public static void LevelStart(int lvl, ILocalSource startData) {
             _level = lvl;
             _startData = startData;
 
