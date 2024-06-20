@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Game.Model.Data.Base;
+using Game.Model.Data.Battle;
 using Game.Model.Data.ReadOnly;
 using UnityEngine;
 
-namespace Game.Model.Data.Battle{
+namespace Game.Model.Data.Manager{
 
     [System.Serializable]
     public class ActionCards : ISerialization, IActionList {

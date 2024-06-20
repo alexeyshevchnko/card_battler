@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Game.Model.Data.Battle;
+using Game.Model.Data.Manager;
 using Game.Model.Data.ReadOnly;
 using Game.Model.Data.Type;
 using UnityEngine;
 
-namespace Game.Model.Data.Battle{
+namespace Game.Model.Data.Source{
 
     public class Configs : IConfigs {
         public const int HAND_CART_COUNT = 5;

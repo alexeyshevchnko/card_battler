@@ -1,5 +1,5 @@
 {
-    "name": "Game.Data.Base",
+    "name": "Game.Model.Data.Base",
     "rootNamespace": "",
     "references": [
         "GUID:f92376f03c493844da0fd975c5d733f0"

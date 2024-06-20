@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Game.View.Battle{
+namespace Game.View.Helper{
 
 #if UNITY_EDITOR
     [ExecuteInEditMode]

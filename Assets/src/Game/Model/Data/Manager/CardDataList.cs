@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Game.Model.Data.Battle;
 using UnityEngine;
 
-namespace Game.Model.Data.Battle{
+namespace Game.Model.Data.Manager{
 
     [System.Serializable]
     public class CardDataList {

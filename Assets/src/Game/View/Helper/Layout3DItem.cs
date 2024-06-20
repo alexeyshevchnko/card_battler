@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.View.Battle{
+namespace Game.View.Helper{
 
     public class Layout3DItem : MonoBehaviour {
         [SerializeField] Renderer _render;

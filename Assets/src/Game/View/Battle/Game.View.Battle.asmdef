@@ -1,11 +1,12 @@
 {
-    "name": "Game.Battle",
+    "name": "Game.View.Battle",
     "rootNamespace": "",
     "references": [
         "GUID:f92376f03c493844da0fd975c5d733f0",
         "GUID:0993d663a391fcb4e95b7fd55170b95a",
         "GUID:ad113872712f5d4448770eacff1e3290",
-        "GUID:c1ff421b9701a8c4c85758acac045698"
+        "GUID:c1ff421b9701a8c4c85758acac045698",
+        "GUID:5fc7edcf5d8982b4fbb6819556d0e946"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
