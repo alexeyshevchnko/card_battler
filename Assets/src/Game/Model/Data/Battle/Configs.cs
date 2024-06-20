@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Model.Data.ReadOnly;
-using Game.Model.Data.Types;
+using Game.Model.Data.Type;
 using UnityEngine;
 
 namespace Game.Model.Data.Battle{

@@ -1,4 +1,4 @@
-﻿namespace Game.Model.Data.Types{
+﻿namespace Game.Model.Data.Type{
 
     public enum CardMechanicType {
         Commander = 0,

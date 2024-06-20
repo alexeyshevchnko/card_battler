@@ -1,4 +1,5 @@
-﻿using Game.Model.Data.Types;
+﻿
+using Game.Model.Data.Type;
 
 namespace Game.Model.Data.Base{
 
