@@ -13,7 +13,7 @@ namespace Game.View.Battle{
             _counfig = new LocalSource();
             _playerCommander.Bind(_counfig.PlayerCommander);
             _enemyCommander.Bind(_counfig.EnemyCommander);
-            _playerHandCards.Init(_counfig.PlayerHead, LocalSource.HAND_CART_COUNT);
+            _playerHandCards.Init(_counfig.PlayerHead, Settings.HAND_CART_COUNT);
 
             UpdateView();
         }

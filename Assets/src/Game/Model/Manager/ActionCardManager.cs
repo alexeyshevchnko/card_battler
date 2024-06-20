@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Game.Model.Manager{
 
     [System.Serializable]
-    public class ActionCards : ISerialization, IActionList {
+    public class ActionCardManager : ISerialization, IActionCardManager {
         [SerializeField] List<CardAction> _cardAction;
 
         public IReadOnlyList<ICardAction> CardsData => _cardAction;
@@ -15,11 +15,11 @@ namespace Game.Model.Manager{
 
         internal List<CardAction> CardsList => _cardAction;
 
-        public ActionCards(List<ICardAction> data) {
+        public ActionCardManager(List<ICardAction> data) {
             _cardAction = ConvertToCardActions(data);
         }
 
-        public ActionCards(List<CardAction> data) {
+        public ActionCardManager(List<CardAction> data) {
             _cardAction = data;
         }
 

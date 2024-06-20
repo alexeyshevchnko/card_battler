@@ -30,17 +30,4 @@
         Commander4 = 19,
         Commander5 = 20,
     }
-
-
-    public static class DataConfig {
-        public const int COMMANDER_MIN_ID = 16;
-        public const int COMMANDER_MAX_ID = 20;
-
-        public const int HERO_MIN_ID = 11;
-        public const int HERO_MAX_ID = 15;
-
-        public const int EFFECT_MIN_ID = 1;
-        public const int EFFECT_MAX_ID = 10;
-    }
-
 }

@@ -13,7 +13,7 @@ namespace Game.Model.Interface{
         IReadOnlyList<ICardAction> PlayerHead { get; }
         IReadOnlyList<ICardAction> EnemyHead { get; }
 
-        IHeroList PlayerHeroes { get; }
-        IHeroList EnemyHeroes { get; }
+        IHeroManager PlayerHeroes { get; }
+        IHeroManager EnemyHeroes { get; }
     }
 }
