@@ -161,7 +161,6 @@ GameObject:
   - component: {fileID: 7856112368597897270}
   - component: {fileID: 7885574467851555900}
   - component: {fileID: 155386045715343964}
-  - component: {fileID: 3663139023546842051}
   m_Layer: 0
   m_Name: DeckCardPlayer
   m_TagString: Untagged
@@ -224,20 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1584398284844464032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cdff159597b644a9434581c5bb4b19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _render: {fileID: 7812728186060180348}
---- !u!114 &3663139023546842051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584398284844464032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23490351ba9d47344904944cb25f2dc7, type: 3}
+  m_Script: {fileID: 11500000, guid: b45132caf1d11ea42847f41e34c42116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _effectValTxt: {fileID: 4882344876532758832}
@@ -1148,12 +1134,6 @@ PrefabInstance:
 --- !u!224 &4501069854232176639 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7907619635903079403, guid: e0493eb4fd67567469a3c0de60d2e183,
-    type: 3}
-  m_PrefabInstance: {fileID: 6037780116741964820}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &7812728186060180348 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4586603832785424232, guid: e0493eb4fd67567469a3c0de60d2e183,
     type: 3}
   m_PrefabInstance: {fileID: 6037780116741964820}
   m_PrefabAsset: {fileID: 0}

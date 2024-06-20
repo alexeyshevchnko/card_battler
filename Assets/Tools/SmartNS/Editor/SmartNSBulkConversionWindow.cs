@@ -5,12 +5,11 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace GraviaSoftware.SmartNS.SmartNS.Editor {
+namespace Tools.SmartNS.Editor{
 
     public class SmartNSBulkConversionWindow : EditorWindow {
         [MenuItem("Window/SmartNS/Bulk Namespace Conversion...")]
         static void Init() {
-            // Get existing open window or if none, make a new one:
             SmartNSBulkConversionWindow window =
                 (SmartNSBulkConversionWindow) EditorWindow.GetWindow(typeof(SmartNSBulkConversionWindow));
             window.titleContent = new GUIContent("Bulk Namespace Converter");
@@ -39,15 +38,12 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor {
                 var clickedAssetGuid = Selection.assetGUIDs[0];
                 var clickedPath = AssetDatabase.GUIDToAssetPath(clickedAssetGuid);
                 var clickedPathFull = Path.Combine(Directory.GetCurrentDirectory(), clickedPath);
-
-                FileAttributes attr = File.GetAttributes(clickedPathFull);
+                var attr = File.GetAttributes(clickedPathFull);
 
                 if (attr.HasFlag(FileAttributes.Directory)) {
-                    // This is a directory. Return it.
                     return clickedPath;
                 }
                 else {
-                    // Strip off the file name.
                     var lastForwardSlashIndex = clickedPath.LastIndexOf('/');
                     var lastBackSlashIndex = clickedPath.LastIndexOf('\\');
 
@@ -57,15 +53,42 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor {
                     else if (lastBackSlashIndex >= 0) {
                         return clickedPath.Substring(0, lastBackSlashIndex);
                     }
-
                 }
-
             }
-
             return null;
         }
 
+        private void ProcessRenameAllAsmdefFiles()
+        {
+            var smartNSSettings = SmartNSSettings.GetSerializedSettings();
+            _scriptRootSettingsValue = smartNSSettings.FindProperty("_ScriptRoot").stringValue;
+
+            var asmdefFiles = GetAssetsToProcessAsmdefFiles(_scriptRootSettingsValue);
+            foreach (var asmdefFile in asmdefFiles) {
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(asmdefFile);
+                string newFileName = asmdefFile.Replace(_scriptRootSettingsValue, "");
+                newFileName = newFileName.Replace(fileNameWithoutExtension, "");
+                newFileName = newFileName.Replace("/", ".");
+                newFileName = newFileName.Replace("..", ".");
+                newFileName = newFileName.Remove(0, 1);
+                 
+                var asmdefObject = AssetDatabase.LoadMainAssetAtPath(asmdefFile);
+                if (asmdefObject != null)
+                {
+                    AssetDatabase.RenameAsset(AssetDatabase.GetAssetPath(asmdefObject), newFileName);
+                
+                    Debug.Log($"Renaming {asmdefFile} to {newFileName}.asmdef ");
+                }
+                else
+                {
+                    Debug.LogError($"Failed to load asset at path {asmdefFile}");
+                }
+            }
+        }
+
         void OnGUI() {
+            var yPos = 20;
+
             if (string.IsNullOrWhiteSpace(_baseDirectory)) {
                 _baseDirectory = GetClickedDirFullPath();
             }
@@ -75,9 +98,6 @@ namespace GraviaSoftware.SmartNS.SmartNS.Editor {
             }
 
             GUILayout.Label("SmartNS Bulk Namespace Conversion", EditorStyles.boldLabel);
-
-
-            int yPos = 20;
             GUI.Box(new Rect(0, yPos, position.width, 220),
                     @"This tool will automatically add or correct the namespaces on any C# scripts in your project, making them consistent with your SmartNS settings.
 
@@ -88,7 +108,6 @@ This is a potentially destrucive tool. It will modify the actual file contents o
 See the Documentation.txt file for more information on this. But in general, you probably shouldn't run this on 3rd-party code you got from the asset store.");
 
             yPos += 220;
-
 
             GUI.Box(new Rect(0, yPos, position.width, 100), @"Instructions:
  - Click the 'Base Directory' button to choose the base directory. Only scripts in, or under, that directory will be processed.
@@ -108,15 +127,14 @@ See the Documentation.txt file for more information on this. But in general, you
                 }
             }
 
-
             yPos += 30;
 
-
-
             if (!_isProcessing) {
+
                 var submitButtonContent = new GUIContent("Begin Namespace Conversion", "Begin processing scripts");
                 var submitButtonStyle = new GUIStyle(GUI.skin.button);
                 submitButtonStyle.normal.textColor = new Color(0, .5f, 0);
+
                 if (GUI.Button(new Rect(position.width / 2 - 350 / 2, yPos, 350, 30), submitButtonContent,
                                submitButtonStyle)) {
                     string assetBasePath =
@@ -125,8 +143,14 @@ See the Documentation.txt file for more information on this. But in general, you
                         assetBasePath += "/";
                     }
 
-
+                   
                     _assetsToProcess = GetAssetsToProcess(assetBasePath);
+
+                    // foreach (var t in GetAssetsToProcessAsmdefFiles(assetBasePath)) {
+                    //     Debug.LogError(t);
+                    // }
+                    ProcessRenameAllAsmdefFiles();
+
 
                     if (EditorUtility.DisplayDialog("Are you sure?",
                                                     string.Format(
@@ -135,28 +159,23 @@ See the Documentation.txt file for more information on this. But in general, you
                                                     string.Format("I'm sure. Process {0} scripts",
                                                                   _assetsToProcess.Count),
                                                     "Cancel")) {
+
                         var smartNSSettings = SmartNSSettings.GetSerializedSettings();
-                        _scriptRootSettingsValue = smartNSSettings.FindProperty("m_ScriptRoot").stringValue;
-                        _prefixSettingsValue = smartNSSettings.FindProperty("m_NamespacePrefix").stringValue;
+                        _scriptRootSettingsValue = smartNSSettings.FindProperty("_ScriptRoot").stringValue;
+                        _prefixSettingsValue = smartNSSettings.FindProperty("_NamespacePrefix").stringValue;
                         _universalNamespaceSettingsValue =
-                            smartNSSettings.FindProperty("m_UniversalNamespace").stringValue;
-                        _useSpacesSettingsValue = smartNSSettings.FindProperty("m_IndentUsingSpaces").boolValue;
-                        _numberOfSpacesSettingsValue = smartNSSettings.FindProperty("m_NumberOfSpaces").intValue;
+                            smartNSSettings.FindProperty("_UniversalNamespace").stringValue;
+                        _useSpacesSettingsValue = smartNSSettings.FindProperty("_IndentUsingSpaces").boolValue;
+                        _numberOfSpacesSettingsValue = smartNSSettings.FindProperty("_NumberOfSpaces").intValue;
                         _directoryDenyListSettingsValue =
-                            smartNSSettings.FindProperty("m_DirectoryIgnoreList").stringValue;
-                        _enableDebugLogging = smartNSSettings.FindProperty("m_EnableDebugLogging").boolValue;
-
-                        // Cache this once now, for performance reasons.
+                            smartNSSettings.FindProperty("_DirectoryIgnoreList").stringValue;
+                        _enableDebugLogging = smartNSSettings.FindProperty("_EnableDebugLogging").boolValue;
                         _ignoredDirectories = SmartNS.GetIgnoredDirectories();
-
-
-
                         _progressCount = 0;
                         _isProcessing = true;
                     }
                 }
             }
-
 
             if (_isProcessing) {
                 var cancelButtonContent = new GUIContent("Cancel", "Cancel script conversion");
@@ -216,7 +235,25 @@ See the Documentation.txt file for more information on this. But in general, you
 
             return AssetDatabase.GetAllAssetPaths()
                                 .Where(s => s.EndsWith(".cs", StringComparison.OrdinalIgnoreCase)
-                                            // We ALWAYS require that the scripts be within Assets, regardless of anything else. We don't want to clobber Packages, for example.
+                                            && s.StartsWith("Assets", StringComparison.OrdinalIgnoreCase)
+                                            && s.StartsWith(assetBasePath, StringComparison.OrdinalIgnoreCase)
+                                            && !isInIgnoredDirectory(s)).ToList();
+        }
+
+        private List<string> GetAssetsToProcessAsmdefFiles(string assetBasePath)
+        {
+            var ignoredDirectories = SmartNS.GetIgnoredDirectories();
+
+            Func<string, bool> isInIgnoredDirectory = (assetPath) => {
+                var indexOfAsset = Application.dataPath.LastIndexOf("Assets");
+                var fullFilePath = Application.dataPath.Substring(0, indexOfAsset) + assetPath;
+                var fileInfo = new FileInfo(fullFilePath);
+                return ignoredDirectories.Contains(fileInfo.Directory.FullName);
+
+            };
+
+            return AssetDatabase.GetAllAssetPaths()
+                                .Where(s => s.EndsWith(".asmdef", StringComparison.OrdinalIgnoreCase)
                                             && s.StartsWith("Assets", StringComparison.OrdinalIgnoreCase)
                                             && s.StartsWith(assetBasePath, StringComparison.OrdinalIgnoreCase)
                                             && !isInIgnoredDirectory(s)).ToList();
@@ -224,7 +261,6 @@ See the Documentation.txt file for more information on this. But in general, you
 
         void Update() {
             if (_isProcessing) {
-                // Without this, we don't get updates every frame, and the whole window just creeps along.
                 Repaint();
             }
         }
