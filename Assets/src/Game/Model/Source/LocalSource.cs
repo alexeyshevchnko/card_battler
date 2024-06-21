@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Game.Model.Data;
 using Game.Model.Interface;
 using Game.Model.Manager;
 using Game.Model.Type;
+using Shared.Helper;
 using UnityEngine;
 
 namespace Game.Model.Source{
 
-    public class LocalSource : ILocalSource { 
+    public class LocalSource : ISource { 
 
         public ICommander PlayerCommander => _playerCommander;
         public ICommander EnemyCommander => _enemyCommander;
@@ -21,50 +23,59 @@ namespace Game.Model.Source{
         public IHeroManager PlayerHeroes => _playerHeroes;
         public IHeroManager EnemyHeroes => _enemyHeroes;
 
-        private readonly Commander _playerCommander;
-        private readonly Commander _enemyCommander;
+        private Commander _playerCommander;
+        private Commander _enemyCommander;
 
-        private readonly HeroManager _playerHeroes;
-        private readonly HeroManager _enemyHeroes;
+        private HeroManager _playerHeroes;
+        private HeroManager _enemyHeroes;
 
-        private readonly ActionCardManager _playerDeck;
-        private readonly ActionCardManager _enemyDeck;
+        private ActionCardManager _playerDeck;
+        private ActionCardManager _enemyDeck;
 
-        private readonly ActionCardManager _playerHead;//
-        private readonly ActionCardManager _enemyHead;//
+        private ActionCardManager _playerHead;
+        private ActionCardManager _enemyHead;
 
+        public async Task<bool> Connect()
+        {
+            try {
+                Debug.Log($"Connect.....");
 
-        public LocalSource() {
-            Debug.Log($"generate configs.....");
+                await HelperTask.WaitForSeconds(3);
 
-            var countHero = Random.Range(1, Settings.MAX_HERO_COUNT + 1);
-            _playerHeroes = GenerateHeroes(countHero);
-            _enemyHeroes = GenerateHeroes(countHero);
+                Debug.Log($"generate configs.....");
 
-            _playerCommander = GenerateCommander();
-            _enemyCommander = GenerateCommander();
+                var countHero = Random.Range(1, Settings.MAX_HERO_COUNT + 1);
+                _playerHeroes = GenerateHeroes(countHero);
+                _enemyHeroes = GenerateHeroes(countHero);
 
-            var countDeck = Random.Range(5, 11);
-            _playerDeck = GenerateDeck(countDeck);
-            _enemyDeck = GenerateDeck(countDeck);
+                _playerCommander = GenerateCommander();
+                _enemyCommander = GenerateCommander();
 
-            _playerHead = GenerateHead(_playerDeck, Settings.HAND_CART_COUNT);
-            _enemyHead = GenerateHead(_enemyDeck, Settings.HAND_CART_COUNT);
+                var countDeck = Random.Range(5, 11);
+                _playerDeck = GenerateDeck(countDeck);
+                _enemyDeck = GenerateDeck(countDeck);
 
-            Debug.Log($"_playerCommander = {_playerCommander.GetJson()}");
-            Debug.Log($"_enemyCommander = {_enemyCommander.GetJson()}");
+                _playerHead = GenerateHead(_playerDeck, Settings.HAND_CART_COUNT);
+                _enemyHead = GenerateHead(_enemyDeck, Settings.HAND_CART_COUNT);
 
-            Debug.Log($"_playerDeck = {_playerDeck.GetJson()}");
-            Debug.Log($"_enemyDeck = {_enemyDeck.GetJson()}");
+                Debug.Log($"_playerCommander = {_playerCommander.GetJson()}");
+                Debug.Log($"_enemyCommander = {_enemyCommander.GetJson()}");
 
-            Debug.Log($"_playerHeroes = {_playerHeroes.GetJson()}");
-            Debug.Log($"_enemyHeroes = {_enemyHeroes.GetJson()}");
+                Debug.Log($"_playerDeck = {_playerDeck.GetJson()}");
+                Debug.Log($"_enemyDeck = {_enemyDeck.GetJson()}");
 
-            Debug.Log($"_playerHead = {_playerHead.GetJson()}");
-            Debug.Log($"_enemyHead = {_enemyHead.GetJson()}"); 
-            
+                Debug.Log($"_playerHeroes = {_playerHeroes.GetJson()}");
+                Debug.Log($"_enemyHeroes = {_enemyHeroes.GetJson()}");
+
+                Debug.Log($"_playerHead = {_playerHead.GetJson()}");
+                Debug.Log($"_enemyHead = {_enemyHead.GetJson()}");
+                return true;
+            }
+            catch {
+                Debug.Log($"Сonnect unsuccessful");
+                return false;
+            }
         }
-
 
         Commander GenerateCommander() {
             var rez = new Commander();
@@ -132,8 +143,7 @@ namespace Game.Model.Source{
             return new ActionCardManager(list);
         }
 
-
-        public ActionCardManager GenerateHead(ActionCardManager deck, int count)
+        ActionCardManager GenerateHead(ActionCardManager deck, int count)
         {
             var listDeck = new List<ICardAction>(deck.CardsReadList);
             var selectedCards = new List<ICardAction>();

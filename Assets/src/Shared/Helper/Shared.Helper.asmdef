@@ -1,12 +1,7 @@
 {
-    "name": "Game.Controller",
+    "name": "Shared.Helper",
     "rootNamespace": "",
-    "references": [
-        "GUID:63ffb7b2f77a36940b296c1b3148f305",
-        "GUID:0993d663a391fcb4e95b7fd55170b95a",
-        "GUID:ad113872712f5d4448770eacff1e3290",
-        "GUID:5fc7edcf5d8982b4fbb6819556d0e946"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Game.Model.Interface;
 
 namespace Game.Model.Interface{
 
-    public interface ILocalSource {
+    public interface ISource {
+        Task<bool> Connect();
+
         ICommander PlayerCommander { get; }
         ICommander EnemyCommander { get; }
 

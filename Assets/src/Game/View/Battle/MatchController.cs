@@ -1,4 +1,5 @@
-﻿using Game.Model.Source;
+﻿using System.Threading.Tasks;
+using Game.Controller;
 using UnityEngine;
 
 namespace Game.View.Battle{
@@ -7,18 +8,19 @@ namespace Game.View.Battle{
         [SerializeField] private CommanderCard _playerCommander;
         [SerializeField] private CommanderCard _enemyCommander;
         [SerializeField] private PlayerHandCards _playerHandCards;
-        private LocalSource _counfig;
+        private BattleController _battleController;
 
-        void Awake() {
-            _counfig = new LocalSource();
-            _playerCommander.Bind(_counfig.PlayerCommander);
-            _enemyCommander.Bind(_counfig.EnemyCommander);
-            _playerHandCards.Init(_counfig.PlayerHead, Settings.HAND_CART_COUNT);
+        private async void Start() {
+            _battleController = new BattleController();
+            
+            var result = await _battleController.TryConnect();
+            if (result) {
 
-            UpdateView();
-        }
-
-        void UpdateView() { }
+                _playerCommander.Bind(_battleController.Source.PlayerCommander);
+                _enemyCommander.Bind(_battleController.Source.EnemyCommander);
+                _playerHandCards.Init(_battleController.Source.PlayerHead, Settings.HAND_CART_COUNT);
+            }
+        } 
 
         void Update() { }
     }
