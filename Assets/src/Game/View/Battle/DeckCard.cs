@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Game.Model.Interface;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.View.Battle{
 
     public class DeckCard : MonoBehaviour {
-        [SerializeField] Text _effectValTxt;
-        [SerializeField] Text _nameTxt;
+        [SerializeField] TMP_Text _effectValTxt;
+        [SerializeField] TMP_Text _nameTxt;
         [SerializeField] List<Image> _starsIcons;
-        [SerializeField] Text _lvlTxt;
+        [SerializeField] TMP_Text _lvlTxt;
         private ICardAction _data;
         private PlayerHandCards _playerHandCards;
 

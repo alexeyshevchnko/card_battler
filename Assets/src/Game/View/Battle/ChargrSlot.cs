@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine; 
 
 namespace Game.View.Battle{
 
     public class ChargrSlot : MonoBehaviour {
-        [SerializeField] Text _countTxt;
+        [SerializeField] TMP_Text _countTxt;
     }
 
 }

@@ -1,11 +1,12 @@
 ﻿using Game.Model.Interface;
+using TMPro;
 using UnityEngine;
 
 namespace Game.View.Battle{
 
     public class CommanderCard : MonoBehaviour {
-        [SerializeField] UnityEngine.UI.Text _hpTxt;
-        [SerializeField] UnityEngine.UI.Text _nameTxt;
+        [SerializeField] TMP_Text _hpTxt;
+        [SerializeField] TMP_Text _nameTxt;
 
         public void Bind(ICommander data) {
             _hpTxt.text = data.Health.ToString();
