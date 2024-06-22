@@ -16,6 +16,7 @@ namespace Shared.Test{
         private int localFPS = 0;
         private GUISkin _skin;
 
+        [SerializeField] int _fontSize = 220; 
         [SerializeField] int _targetFrameRate = 60;
         [SerializeField] bool _enabledFPS = true;
         [SerializeField] int _simulateDelay = 0;
@@ -27,26 +28,24 @@ namespace Shared.Test{
         }
 
         void Awake() {
+            DontDestroyOnLoad(this.gameObject);
+            QualitySettings.vSyncCount = 1;
             Application.targetFrameRate = _targetFrameRate;
             enabled = _enabledFPS;
             if (_simulateDelay > 0)
+
                 SleepOnUpdate = Sleep;
         }
-
-        private GUISkin GetSkin(GUISkin prefab) {
-            var skin = Instantiate(prefab);
-            skin.label.fontSize = 20;
-            skin.label.wordWrap = false;
-
-            return skin;
-        }
-
+        
         private void Sleep() {
             Thread.Sleep(_simulateDelay);
             //Debug.Log("Sleep at " + Time.time);
         }
 
         void Update() {
+            //TODO
+            Application.targetFrameRate = 30;
+
             float thisFrame = Time.realtimeSinceStartup;
             float deltaTime = thisFrame - lastFrame;
             if ((int) thisFrame > lastFrame)
@@ -77,6 +76,16 @@ namespace Shared.Test{
                          " frame:" + (avarage * 1000).ToString("0.0") +
                          " [" + (min * 1000).ToString("0.0") +
                          ", " + (max * 1000).ToString("0.0") + "]";
+        }
+
+
+        private GUISkin GetSkin(GUISkin prefab)
+        {
+            var skin = Instantiate(prefab);
+            skin.label.fontSize = _fontSize;
+            skin.label.wordWrap = false;
+
+            return skin;
         }
 
         void OnGUI() {

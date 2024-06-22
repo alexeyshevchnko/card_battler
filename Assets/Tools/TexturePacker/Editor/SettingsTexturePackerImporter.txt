@@ -1,0 +1,8 @@
+version: 2
+tpsheetFileNames:
+- Assets/AddressableResources/Common/Art/TPSheets/tesdtMain.tpsheet
+textureFileNames:
+- Assets/AddressableResources/Common/Art/TPSheets/tesdtMain.png
+normalmapFileNames:
+- 
+enableDebugOutput: 0

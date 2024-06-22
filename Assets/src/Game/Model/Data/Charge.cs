@@ -1,4 +1,4 @@
-﻿using Game.Model.Interface;
+﻿    using Game.Model.Interface;
 using UnityEngine;
 
 namespace Game.Model.Data{
@@ -16,4 +16,3 @@ namespace Game.Model.Data{
     }
 
 }
-
