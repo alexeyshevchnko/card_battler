@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/battle_webgl_desktop.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects: {}
+    path: Assets/Scenes/Loader.unity
+    guid: 03efcdfe65d79024298e1cfdd95fbe18
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a988279befcd5884eaaf5bbcb1755756, type: 2}
