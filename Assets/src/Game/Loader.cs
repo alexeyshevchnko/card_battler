@@ -21,7 +21,7 @@ namespace Game {
         IEnumerator TryConnect() {
             _battleController = new BattleController();
             var result = _battleController.TryConnect(this);
-            while (!_battleController.Source.IsConnect) {
+            while (!_battleController.IsConnect) {
                 yield return new WaitForSeconds(1);
             }
         }
