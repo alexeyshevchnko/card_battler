@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Collections.Generic; 
 using Game.Model.Data;
 using Game.Model.Interface;
 using Game.Model.Manager;
 using Game.Model.Type;
-using Shared.Helper;
+using Shared.Settings;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
