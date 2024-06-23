@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Game.Model.Interface;
+﻿using System.Collections;
+using System.Collections.Generic; 
 
 namespace Game.Model.Interface{
 
     public interface ISource {
-        Task<bool> Connect();
+        IEnumerator Connect();
 
         ICommander PlayerCommander { get; }
         ICommander EnemyCommander { get; }
@@ -18,5 +17,7 @@ namespace Game.Model.Interface{
 
         IHeroManager PlayerHeroes { get; }
         IHeroManager EnemyHeroes { get; }
+
+        bool IsConnect { get; }
     }
 }

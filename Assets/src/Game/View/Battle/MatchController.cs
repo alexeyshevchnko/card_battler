@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 using Game.Controller;
 using UnityEngine;
 
@@ -10,18 +11,25 @@ namespace Game.View.Battle{
         [SerializeField] private PlayerHandCards _playerHandCards;
         private BattleController _battleController;
 
-        private async void Start() {
+        private void Start() {
             _battleController = new BattleController();
-            
-            var result = await _battleController.TryConnect();
-            if (result) {
 
+            StartCoroutine(TryConnect());
+        }
+
+
+        IEnumerator TryConnect() {
+            var result = _battleController.TryConnect(this);
+            while (!_battleController.Source.IsConnect) {
+                yield return new WaitForSeconds(1);
+            }
+
+            if (result)
+            {
                 _playerCommander.Bind(_battleController.Source.PlayerCommander);
                 _enemyCommander.Bind(_battleController.Source.EnemyCommander);
                 _playerHandCards.Init(_battleController.Source.PlayerHead, Settings.HAND_CART_COUNT);
             }
         } 
-
-        void Update() { }
     }
 }

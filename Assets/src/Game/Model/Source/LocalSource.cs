@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Game.Model.Data;
 using Game.Model.Interface;
@@ -6,6 +8,7 @@ using Game.Model.Manager;
 using Game.Model.Type;
 using Shared.Helper;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Model.Source{
 
@@ -22,6 +25,7 @@ namespace Game.Model.Source{
 
         public IHeroManager PlayerHeroes => _playerHeroes;
         public IHeroManager EnemyHeroes => _enemyHeroes;
+        public bool IsConnect => _isConnect;
 
         private Commander _playerCommander;
         private Commander _enemyCommander;
@@ -34,15 +38,17 @@ namespace Game.Model.Source{
 
         private ActionCardManager _playerHead;
         private ActionCardManager _enemyHead;
+        private bool _isConnect = false;
 
-        public async Task<bool> Connect()
-        {
-            try {
-                Debug.Log($"Connect.....");
 
-                await HelperTask.WaitForSeconds(3);
+        public IEnumerator Connect() {
+            // try {
+                Debug.Log("Connect.....");
 
-                Debug.Log($"generate configs.....");
+                yield return new WaitForSeconds(3);
+                // Замените на HelperTask.WaitForSeconds(3), если это работает
+
+                Debug.Log("generate configs.....");
 
                 var countHero = Random.Range(1, Settings.MAX_HERO_COUNT + 1);
                 _playerHeroes = GenerateHeroes(countHero);
@@ -69,12 +75,13 @@ namespace Game.Model.Source{
 
                 Debug.Log($"_playerHead = {_playerHead.GetJson()}");
                 Debug.Log($"_enemyHead = {_enemyHead.GetJson()}");
-                return true;
-            }
-            catch {
-                Debug.Log($"Сonnect unsuccessful");
-                return false;
-            }
+
+                _isConnect = true;
+        //     }
+        //     catch (Exception ex) {
+        //         yield return null;
+        //         Debug.LogError($"Connect unsuccessful: {ex.Message}");
+        //     }
         }
 
         Commander GenerateCommander() {

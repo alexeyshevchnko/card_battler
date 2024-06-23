@@ -9,6 +9,7 @@ namespace Game.View.Battle{
         [SerializeField] TMP_Text _nameTxt;
 
         public void Bind(ICommander data) {
+            //Debug.LogError(data.Name + " " data.Health);
             _hpTxt.text = data.Health.ToString();
             _nameTxt.text = data.Name;
         }
