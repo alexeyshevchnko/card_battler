@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace Game.View.Helper{
 
@@ -154,6 +156,7 @@ namespace Game.View.Helper{
             }
         }
 
+#if UNITY_EDITOR
         internal void SavePositions()
         {
             _savedPositions.Clear();
@@ -166,6 +169,7 @@ namespace Game.View.Helper{
 
             Debug.Log($"Positions saved for {gameObject.name}");
         }
+#endif
 
         public Vector3 GetSlotPosition(int index) {
             return _savedPositions[index];

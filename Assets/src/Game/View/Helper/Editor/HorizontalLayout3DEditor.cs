@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -22,3 +21,4 @@ namespace Game.View.Helper.Editor{
     }
 
 }
+#endif

@@ -4,12 +4,18 @@ using UnityEngine;
 namespace Game.View.Battle{
 
     public class MatchController : MonoBehaviour {
+        internal static MatchController Instance;
+
         [SerializeField] private CommanderCard _playerCommander;
         [SerializeField] private CommanderCard _enemyCommander;
         [SerializeField] private PlayerHandCards _playerHandCards;
         [SerializeField] private EnemyHandCards _enemyHandCards;
         [SerializeField] private EnemyHeroCards _enemyHeroCards;
         [SerializeField] private PlayerHeroCards _playerHeroCards;
+
+        private void Awake() {
+            Instance = this;
+        }
 
         private void Start() {
             _playerCommander.Bind(Loader.BattleController.PlayerCommander);

@@ -245,6 +245,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 473247638}
     m_Modifications:
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281940281
+      objectReference: {fileID: 0}
     - target: {fileID: 3573008152319935264, guid: 2323c51591e77b9418c605232275dde7, type: 3}
       propertyPath: m_Name
       value: HPui
@@ -560,8 +576,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281940281
+  m_fontColor: {r: 0.22264141, g: 0.22264141, b: 0.22264141, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -876,6 +892,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3160501486124879836}
     m_Modifications:
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.22264141
+      objectReference: {fileID: 0}
+    - target: {fileID: 653023248955932546, guid: 2323c51591e77b9418c605232275dde7, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281940281
+      objectReference: {fileID: 0}
     - target: {fileID: 3573008152319935264, guid: 2323c51591e77b9418c605232275dde7, type: 3}
       propertyPath: m_Name
       value: HPui
@@ -1292,8 +1324,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281940281
+  m_fontColor: {r: 0.22264141, g: 0.22264141, b: 0.22264141, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
