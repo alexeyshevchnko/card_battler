@@ -43,7 +43,9 @@ namespace Game.Model.Source{
             // try {
                 Debug.Log("Connect.....");
 
-                yield return new WaitForSeconds(3);
+                float waitTime = Application.isEditor ? 0.2f : 3;
+
+                yield return new WaitForSeconds(waitTime);
                 // Замените на HelperTask.WaitForSeconds(3), если это работает
 
                 Debug.Log("generate configs.....");

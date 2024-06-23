@@ -18,5 +18,5 @@ MonoBehaviour:
   _IndentUsingSpaces: 1
   _NumberOfSpaces: 4
   _UpdateNamespacesWhenMovingScripts: 1
-  _DirectoryIgnoreList: 
+  _DirectoryIgnoreList: Assets/Tools
   _EnableDebugLogging: 0
