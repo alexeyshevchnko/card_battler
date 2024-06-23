@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Game.Model.Interface;
 using TMPro;
 using UnityEngine;
@@ -7,16 +6,15 @@ using UnityEngine.UI;
 
 namespace Game.View.Battle{
 
-    public class DeckCard : MonoBehaviour {
+    public class HandCard : MonoBehaviour {
         [SerializeField] TMP_Text _effectValTxt;
         [SerializeField] TMP_Text _nameTxt;
         [SerializeField] List<Image> _starsIcons;
         [SerializeField] TMP_Text _lvlTxt;
-        private ICardAction _data;
-        private PlayerHandCards _playerHandCards;
 
-        public void Init(ICardAction data, PlayerHandCards playerHandCards) {
-            _playerHandCards = playerHandCards;
+        private ICardAction _data;
+
+        public void Init(ICardAction data) {
             _data = data;
             UpdateView();
         }
@@ -30,19 +28,6 @@ namespace Game.View.Battle{
                 var isEnable = i <= _data.Stars;
                 _starsIcons[i].enabled = isEnable;
             }
-        }
-
-        internal ICardAction GetData() {
-            return _data;
-        }
-
-        internal void MakeMove() {
-            StartCoroutine(MakeMoveAnimation());
-        }
-
-        IEnumerator MakeMoveAnimation() {
-            yield return new WaitForSeconds(1);
-            _playerHandCards.DiscardPile(this);
         }
     }
 

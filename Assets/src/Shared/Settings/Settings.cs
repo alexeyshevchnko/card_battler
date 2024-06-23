@@ -3,6 +3,7 @@ namespace Shared.Settings{
     
     public static class Settings 
     {
+        public const int CHARGE_COUNT = 5;
         public const int HAND_CART_COUNT = 5;
         public const int MAX_HERO_COUNT = 5;
         public const int COMMANDER_HP = 30;

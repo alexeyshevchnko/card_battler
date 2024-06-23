@@ -16,12 +16,12 @@
         Diamonds4 = 9,
         Diamonds5 = 10,
 
-        //COMMANDER
-        Hearts1 = 11,
-        Hearts2 = 12,
-        Hearts3 = 13,
-        Hearts4 = 14,
-        Hearts5 = 15,
+        //HERO
+        Hero1 = 11,
+        Hero2 = 12,
+        Hero3 = 13,
+        Hero4 = 14,
+        Hero5 = 15,
 
         //COMMANDER
         Commander1 = 16,

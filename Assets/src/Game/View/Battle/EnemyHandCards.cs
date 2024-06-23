@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.View.Battle{
-
-    public class ChargrSlots : MonoBehaviour {
-        [SerializeField] List<ChargrSlot> _slots;
-    }
+    
+    public class EnemyHandCards : BaseHandCards { }
 
 }

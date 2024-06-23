@@ -103,7 +103,7 @@ namespace Game.Model.Source{
                 var temp = new Hero();
                 var cardTypeValue = Random.Range(Settings.HERO_MIN_ID, Settings.HERO_MAX_ID + 1);
                 var json = @"{
-                            ""_name"": ""Hero_" + (CardType) cardTypeValue + @""",
+                            ""_name"": """ + (CardType)cardTypeValue + @""",
                             ""_stars"":" + Random.Range(1, 6) + @",
                             ""_level"": -1,
                             ""_health"": " + Random.Range(30, 41) + @",

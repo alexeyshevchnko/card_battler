@@ -19,6 +19,7 @@ namespace Game.View.Helper{
         [SerializeField] private Alignment _alignment = Alignment.Center;
         [SerializeField] private float _verticalOffset = 0.0f;
         [SerializeField] private bool _rotateObjects = false;
+        [SerializeField] private bool _isRecalculateChildrenChanged = true;
 
         private Layout3DItem[] _objectsToLayout;
         private bool _isInit = false;
@@ -53,14 +54,14 @@ namespace Game.View.Helper{
         }
 
         public void Recalculate() {
-            // Init();
             UpdateObjectsToLayout();
             LayoutObjects();
         }
 
         private void OnTransformChildrenChanged() {
-            // Init();
-            Recalculate();
+            //if (_isRecalculateChildrenChanged) {
+                Recalculate();
+            //}
         }
 
         private void Init() {

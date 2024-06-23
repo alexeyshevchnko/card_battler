@@ -13,8 +13,8 @@ namespace Game.Controller {
         public IReadOnlyList<ICardAction> EnemyDeck => _source.EnemyDeck;
         public IReadOnlyList<ICardAction> PlayerHead => _source.PlayerHead;
         public IReadOnlyList<ICardAction> EnemyHead => _source.EnemyHead;
-        public IHeroManager PlayerHeroes => _source.PlayerHeroes;
-        public IHeroManager EnemyHeroes => _source.EnemyHeroes;
+        public IReadOnlyList<IHero> PlayerHeroes => _source.PlayerHeroes.Heroes;
+        public IReadOnlyList<IHero> EnemyHeroes => _source.EnemyHeroes.Heroes;
         public bool IsConnect => _source.IsConnect;
 
         private ISource _source;
