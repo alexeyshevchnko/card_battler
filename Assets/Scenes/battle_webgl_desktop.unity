@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 133190703}
   - component: {fileID: 133190704}
   m_Layer: 5
-  m_Name: HeadEnemy
+  m_Name: HandEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,6 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPref: {fileID: 5476817137068670316, guid: 76c4488aa38b1184b96e178ab28f7b3f, type: 3}
   _root: {fileID: 814531407}
+  _discardPile: {fileID: 1526625274}
+  _deck: {fileID: 2119170146}
+  _horizontalLayout3D: {fileID: 814531408}
 --- !u!1001 &175205348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6520594062245745673, guid: a82b198923b42514cb8dee25d95229d7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -401,6 +404,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPref: {fileID: 8994247737932255071, guid: f792fed0b7447b0479e1e5830c5c87db, type: 3}
   _root: {fileID: 1720959196}
+  _discardPile: {fileID: 1526625274}
+  _deck: {fileID: 2119170146}
+  _horizontalLayout3D: {fileID: 1720959197}
 --- !u!1 &421438177
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +779,12 @@ MonoBehaviour:
   _alignment: 1
   _verticalOffset: -1.05
   _rotateObjects: 0
-  _isRecalculateChildrenChanged: 1
+  _savedPositions:
+  - {x: -2.794812, y: 6.4885025, z: 0}
+  - {x: -0.5374057, y: 6.4885025, z: 0}
+  - {x: 1.7200004, y: 6.4885025, z: 0}
+  - {x: 3.9774065, y: 6.4885025, z: 0}
+  - {x: 6.2348127, y: 6.4885025, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +984,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1526625273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1526625274}
+  m_Layer: 0
+  m_Name: DiscardPile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1526625274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526625273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.7, y: 0.69, z: 6.463501}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605406803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1185,12 @@ MonoBehaviour:
   _alignment: 1
   _verticalOffset: 1.01
   _rotateObjects: 0
-  _isRecalculateChildrenChanged: 0
+  _savedPositions:
+  - {x: -2.1417606, y: 2.533, z: 0}
+  - {x: -0.21088004, y: 2.533, z: 0}
+  - {x: 1.7200004, y: 2.533, z: 0}
+  - {x: 3.6508808, y: 2.533, z: 0}
+  - {x: 5.5817614, y: 2.533, z: 0}
 --- !u!1 &1910194285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,6 +1397,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2054306694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054306695}
+  m_Layer: 0
+  m_Name: PlayerDeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054306695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054306694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.03, y: 1.4, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2119170145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119170146}
+  m_Layer: 0
+  m_Name: EnemyDeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2119170146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119170145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.42, y: 2.1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123398031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,7 +1533,12 @@ MonoBehaviour:
   _alignment: 1
   _verticalOffset: -0.85
   _rotateObjects: 0
-  _isRecalculateChildrenChanged: 0
+  _savedPositions:
+  - {x: -2.1417606, y: 0.18499994, z: 0}
+  - {x: -0.21088004, y: 0.18499994, z: 0}
+  - {x: 1.7200004, y: 0.18499994, z: 0}
+  - {x: 3.6508808, y: 0.18499994, z: 0}
+  - {x: 5.5817614, y: 0.18499994, z: 0}
 --- !u!1 &732097201996966104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1729,12 @@ MonoBehaviour:
   _alignment: 1
   _verticalOffset: 1.05
   _rotateObjects: 0
-  _isRecalculateChildrenChanged: 1
+  _savedPositions:
+  - {x: -2.1417606, y: -3.7085028, z: 0}
+  - {x: -0.21088004, y: -3.7085028, z: 0}
+  - {x: 1.7200004, y: -3.7085028, z: 0}
+  - {x: 3.6508808, y: -3.7085028, z: 0}
+  - {x: 5.5817614, y: -3.7085028, z: 0}
 --- !u!33 &4403022921530099617
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1702,7 +1821,7 @@ GameObject:
   - component: {fileID: 7994484933594650915}
   - component: {fileID: 7994484933594650916}
   m_Layer: 5
-  m_Name: HeadPlayer
+  m_Name: HandPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,6 +1924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPref: {fileID: 8994247737932255071, guid: 8785c4271d1bef441b0fdf24fbd4f1d0, type: 3}
   _root: {fileID: 5531581203219524581}
+  _discardPile: {fileID: 1526625274}
+  _deck: {fileID: 2119170146}
+  _horizontalLayout3D: {fileID: 529093284470333014}
 --- !u!224 &7907619637154639532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1860,6 +1982,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPref: {fileID: 1584398284844464032, guid: 5c7735f9f7c4eb44cb885e92e768fbe0, type: 3}
   _root: {fileID: 2843504345906936554}
+  _discardPile: {fileID: 1526625274}
+  _deck: {fileID: 2054306695}
+  _horizontalLayout3D: {fileID: 3918433416247322193}
 --- !u!23 &8095798648715629525
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1948,3 +2073,6 @@ SceneRoots:
   - {fileID: 2942771514237956676}
   - {fileID: 7907619637154639532}
   - {fileID: 175205348}
+  - {fileID: 2054306695}
+  - {fileID: 2119170146}
+  - {fileID: 1526625274}

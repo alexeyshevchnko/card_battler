@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 
 namespace Game.View.Helper{
@@ -19,7 +20,7 @@ namespace Game.View.Helper{
         [SerializeField] private Alignment _alignment = Alignment.Center;
         [SerializeField] private float _verticalOffset = 0.0f;
         [SerializeField] private bool _rotateObjects = false;
-        [SerializeField] private bool _isRecalculateChildrenChanged = true;
+        [SerializeField] private List<Vector3> _savedPositions = new List<Vector3>();
 
         private Layout3DItem[] _objectsToLayout;
         private bool _isInit = false;
@@ -60,6 +61,7 @@ namespace Game.View.Helper{
 
         private void OnTransformChildrenChanged() {
             //if (_isRecalculateChildrenChanged) {
+            if (!Application.isPlaying)
                 Recalculate();
             //}
         }
@@ -150,6 +152,23 @@ namespace Game.View.Helper{
                 default:
                     return 0;
             }
+        }
+
+        internal void SavePositions()
+        {
+            _savedPositions.Clear();
+            foreach (var obj in _objectsToLayout)
+            {
+                _savedPositions.Add(obj.transform.position);
+                Undo.RecordObject(obj.transform, "Save Layout Position");
+                EditorUtility.SetDirty(obj.transform);
+            }
+
+            Debug.Log($"Positions saved for {gameObject.name}");
+        }
+
+        public Vector3 GetSlotPosition(int index) {
+            return _savedPositions[index];
         }
     }
 }
