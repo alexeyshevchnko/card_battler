@@ -10,6 +10,9 @@ namespace Game.View.Battle{
         [SerializeField] private TMP_Text _nameTxt;
         [SerializeField] private TMP_Text _hpTxt;
         [SerializeField] private ChargeSlots _chargeSlots;
+        [SerializeField] private AliveEntity _aliveEntity;
+
+        public IAliveEntity AliveEntity => _aliveEntity;
 
         private IHero _data;
 
@@ -19,6 +22,8 @@ namespace Game.View.Battle{
 
         public void Init(IHero data) {
             _data = data;
+            _aliveEntity.SetMaxHealth(data.Health);
+            _aliveEntity.SetAlive();
             UpdateView();
         }
 

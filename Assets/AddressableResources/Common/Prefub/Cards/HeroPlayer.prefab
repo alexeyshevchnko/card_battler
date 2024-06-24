@@ -1710,6 +1710,7 @@ GameObject:
   - component: {fileID: 7569869097177678294}
   - component: {fileID: 8276447152105763050}
   - component: {fileID: 7075014175828954268}
+  - component: {fileID: 428800720238265933}
   m_Layer: 0
   m_Name: HeroPlayer
   m_TagString: Untagged
@@ -1762,6 +1763,21 @@ MonoBehaviour:
   _nameTxt: {fileID: 8471187691060587050}
   _hpTxt: {fileID: 5061625833481099826}
   _chargeSlots: {fileID: 1817188849072608797}
+  _aliveEntity: {fileID: 428800720238265933}
+--- !u!114 &428800720238265933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994247737932255071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407ee63c01268c7428a96ba8b4896f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _debugMode: 1
 --- !u!1 &9206105103334950607
 GameObject:
   m_ObjectHideFlags: 0
