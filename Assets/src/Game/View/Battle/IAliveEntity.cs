@@ -15,11 +15,9 @@ namespace Game.View.Battle {
         event UnityAction<float, float> HealthUpdateEvent;
         event UnityAction<float> DamageEvent;
 
-        //void SetMaxHealth(float val);
         void SetArmor(float val);
-        void ApplyDamage(float damage, Transform damageSource, bool showDamage = true);
-        void Regen(float regen);
-        //void SetAlive();
+        void ApplyDamage(float damage, Transform damageSource);
+        void Regeneration(float val);
     }
 
 }

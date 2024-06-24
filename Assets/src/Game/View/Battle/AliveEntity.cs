@@ -35,7 +35,7 @@ namespace Game.View.Battle {
             _armor = val;
         }
 
-        public virtual void ApplyDamage(float damage, Transform damageSource, bool showDamage = true) {
+        public virtual void ApplyDamage(float damage, Transform damageSource) {
             if (IsAlive) {
                 damage *= (1 - _armor); // armor protection 
                 Health = Mathf.Max(0, Health - damage);
@@ -50,8 +50,8 @@ namespace Game.View.Battle {
             }
         }
 
-        public void Regen(float regen) {
-            float regenValue = MaxHealth * regen;
+        public void Regeneration(float val) {
+            float regenValue = MaxHealth * val;
             if (Health + regenValue > MaxHealth) {
                 regenValue = MaxHealth - Health;
             }
