@@ -1,4 +1,4 @@
-﻿using Shared.Settings;
+﻿using Game.Model.Interface;
 using UnityEngine;
 
 namespace Game.View.Battle{
@@ -8,8 +8,10 @@ namespace Game.View.Battle{
 
         [SerializeField] private CommanderCard _playerCommander;
         [SerializeField] private CommanderCard _enemyCommander;
+
         [SerializeField] private PlayerHandCards _playerHandCards;
         [SerializeField] private EnemyHandCards _enemyHandCards;
+
         [SerializeField] private EnemyHeroCards _enemyHeroCards;
         [SerializeField] private PlayerHeroCards _playerHeroCards;
 
@@ -24,6 +26,16 @@ namespace Game.View.Battle{
             _enemyHandCards.Init(Loader.BattleController.EnemyHead);
             _enemyHeroCards.Init(Loader.BattleController.EnemyHeroes);
             _playerHeroCards.Init(Loader.BattleController.PlayerHeroes);
+        }
+
+        internal void SelectEnableHero(ICardAction data) {
+            _enemyHeroCards.SelectEnableHero(data);
+            _playerHeroCards.SelectEnableHero(data);
+        }
+
+        internal void UnselectAllHero() {
+            _enemyHeroCards.UnselectAllHero();
+            _playerHeroCards.UnselectAllHero();
         }
     }
 }

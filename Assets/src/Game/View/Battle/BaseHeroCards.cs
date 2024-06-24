@@ -13,6 +13,8 @@ namespace Game.View.Battle {
         [SerializeField] private Transform _discardPile;
         [SerializeField] private Transform _deck;
         [SerializeField] private HorizontalLayout3D _horizontalLayout3D;
+        [SerializeField] private Material _selectCardMat;
+        [SerializeField] private Material _unselectCardMat;
 
         private IReadOnlyList<IHero> _data;
         private List<HeroCard> _cards;
@@ -50,6 +52,18 @@ namespace Game.View.Battle {
             for (var i = 0; i < _cards.Count; i++) {
                 var endPos = _horizontalLayout3D.GetSlotPosition(i);
                 _cards[i].transform.DOMove(endPos, 1);
+            }
+        }
+
+        internal void SelectEnableHero(ICardAction actionCardData) {
+            foreach (var card in _cards) {
+                card.TrySelect(actionCardData, _selectCardMat);
+            }
+        }
+
+        internal void UnselectAllHero() {
+            foreach (var card in _cards) {
+                card.Unselect(_unselectCardMat);
             }
         }
     }

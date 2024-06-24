@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Game.View.Battle{
 
-    public class HeroCard : MonoBehaviour {
+    public abstract class  HeroCard : MonoBehaviour {
+        [SerializeField] protected Renderer _renderer;
         [SerializeField] private TMP_Text _nameTxt;
         [SerializeField] private TMP_Text _hpTxt;
         [SerializeField] private ChargeSlots _chargeSlots;
@@ -21,6 +22,12 @@ namespace Game.View.Battle{
             _hpTxt.text = _data.Health.ToString();
             _chargeSlots.Init(_data.Charges);
         }
+
+        internal void Unselect(Material unselectMat) {
+            _renderer.material = unselectMat;
+        }
+
+        internal abstract bool TrySelect(ICardAction actionCardData, Material selectMat);
 
     }
 

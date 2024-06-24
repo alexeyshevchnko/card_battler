@@ -423,6 +423,8 @@ MonoBehaviour:
   _discardPile: {fileID: 1526625274}
   _deck: {fileID: 2119170146}
   _horizontalLayout3D: {fileID: 1720959197}
+  _selectCardMat: {fileID: 2100000, guid: c90e40dd26fe1fa45bfd45d943d33e77, type: 2}
+  _unselectCardMat: {fileID: 2100000, guid: a6177b244c04e6848a8770bd76534a08, type: 2}
 --- !u!1 &421438177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +1961,8 @@ MonoBehaviour:
   _discardPile: {fileID: 1526625274}
   _deck: {fileID: 2119170146}
   _horizontalLayout3D: {fileID: 529093284470333014}
+  _selectCardMat: {fileID: 2100000, guid: c90e40dd26fe1fa45bfd45d943d33e77, type: 2}
+  _unselectCardMat: {fileID: 2100000, guid: a6177b244c04e6848a8770bd76534a08, type: 2}
 --- !u!224 &7907619637154639532
 RectTransform:
   m_ObjectHideFlags: 0

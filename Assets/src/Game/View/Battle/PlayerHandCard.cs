@@ -24,6 +24,7 @@ namespace Game.View.Battle {
             _originalDragParent = _root.parent;
             _root.localScale = _dragScale;
             _root.SetParent(_canvas.transform, true);
+            MatchController.Instance.SelectEnableHero(_data);
         }
 
         public void OnDrag(PointerEventData eventData) {
@@ -42,6 +43,7 @@ namespace Game.View.Battle {
             _root.SetParent(_originalDragParent, true);
             _root.localScale = Vector3.one;
             _root.position = _startDragPosition;
+            MatchController.Instance.UnselectAllHero();
         }
     }
 

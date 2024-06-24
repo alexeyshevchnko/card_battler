@@ -1709,7 +1709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7569869097177678294}
   - component: {fileID: 8276447152105763050}
-  - component: {fileID: 6563878594550624071}
+  - component: {fileID: 7075014175828954268}
   m_Layer: 0
   m_Name: HeroPlayer
   m_TagString: Untagged
@@ -1748,7 +1748,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994247737932255071}
   m_CullTransparentMesh: 1
---- !u!114 &6563878594550624071
+--- !u!114 &7075014175828954268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1757,9 +1757,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8994247737932255071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735b821b093a92a4e824815f85730828, type: 3}
+  m_Script: {fileID: 11500000, guid: b7e932704df2cbe4eba6ea8873b61b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 155158837148035513}
   _nameTxt: {fileID: 8471187691060587050}
   _hpTxt: {fileID: 5061625833481099826}
   _chargeSlots: {fileID: 1817188849072608797}
@@ -1941,6 +1942,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0493eb4fd67567469a3c0de60d2e183, type: 3}
+--- !u!23 &155158837148035513 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4586603832785424232, guid: e0493eb4fd67567469a3c0de60d2e183, type: 3}
+  m_PrefabInstance: {fileID: 4432069530367715025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5781599276434867514 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7907619635903079403, guid: e0493eb4fd67567469a3c0de60d2e183, type: 3}

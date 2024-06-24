@@ -12,7 +12,7 @@ namespace Game.View.Battle {
         [SerializeField] List<Image> _starsIcons;
         [SerializeField] TMP_Text _lvlTxt;
 
-        private ICardAction _data;
+        protected ICardAction _data;
 
         protected virtual void Awake() { }
 
