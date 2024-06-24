@@ -131,7 +131,7 @@ namespace Game.Model.Source{
                     (effectValue > 0 ? (byte) CardMechanicType.Buff : (byte) CardMechanicType.DeBuff);
                 var effectType = (effectValue > 0 ? (byte) EffectType.Healing : (byte) EffectType.Attack);
                 var json = @"{
-                    ""_name"": """ + (CardType) cardTypeValue + @""",
+                    ""_name"": """ + (CardMechanicType)mechanicTypeType + cardTypeValue.ToString() + @""",
                     ""_stars"": " + Random.Range(1, 6) + @",
                     ""_level"": -1,
                     ""_cardType"": " + cardTypeValue + @",

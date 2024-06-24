@@ -3,18 +3,18 @@
     public enum CardType {
         //EFFECTS
         //buff
-        Clubs1 = 1,
-        Clubs2 = 2,
-        Clubs3 = 3,
-        Clubs4 = 4,
-        Clubs5 = 5,
+        Buff1 = 1,
+        Buff2 = 2,
+        Buff3 = 3,
+        Buff4 = 4,
+        Buff5 = 5,
 
         //debuff
-        Diamonds1 = 6,
-        Diamonds2 = 7,
-        Diamonds3 = 8,
-        Diamonds4 = 9,
-        Diamonds5 = 10,
+        DeBuff1 = 6,
+        DeBuff2 = 7,
+        DeBuff3 = 8,
+        DeBuff4 = 9,
+        DeBuff5 = 10,
 
         //HERO
         Hero1 = 11,
