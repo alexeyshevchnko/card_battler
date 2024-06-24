@@ -743,6 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63aa9fcb64d352a48b803e75c21e20e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 421438179}
   _hpTxt: {fileID: 289012265}
   _nameTxt: {fileID: 451888900}
 --- !u!1 &814531406
@@ -1602,6 +1603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63aa9fcb64d352a48b803e75c21e20e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 8095798648715629525}
   _hpTxt: {fileID: 1190819456}
   _nameTxt: {fileID: 1993859975}
 --- !u!224 &2138377195218622592

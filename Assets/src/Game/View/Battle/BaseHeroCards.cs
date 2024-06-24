@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using Game.Model.Interface;
 using Game.View.Helper;
@@ -65,6 +64,14 @@ namespace Game.View.Battle {
             foreach (var card in _cards) {
                 card.Unselect(_unselectCardMat);
             }
+        }
+
+        internal int GetCardCount() {
+            return _cards.Count;
+        }
+
+        internal HeroCard GetCard(int index) {
+            return _cards[index];
         }
     }
 
