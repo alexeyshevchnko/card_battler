@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Game.View.Battle {
 
-    internal class AliveEntity : MonoBehaviour, IAliveEntity {
+    public class AliveEntity : MonoBehaviour, IAliveEntity {
         [SerializeField] private float _maxHealth = _DefaultHealth;
         [SerializeField] private bool _debugMode = false;
 

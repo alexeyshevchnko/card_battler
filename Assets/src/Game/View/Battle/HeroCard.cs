@@ -2,29 +2,38 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 namespace Game.View.Battle{
 
-    public abstract class HeroCard : MonoBehaviour {
+    public abstract class HeroCard : BaseAliveCard
+    {
+        [SerializeField] protected Transform _root;
         [SerializeField] protected Renderer _renderer;
         [SerializeField] private TMP_Text _nameTxt;
-        [SerializeField] private TMP_Text _hpTxt;
         [SerializeField] private ChargeSlots _chargeSlots;
-        [SerializeField] private AliveEntity _aliveEntity;
-
-        public IAliveEntity AliveEntity => _aliveEntity;
-
-        private IHero _data;
+        
+        private IHero _data; 
 
         internal Vector3 GetRootWorldPosition() {
             return _renderer.transform.position;
+        }
+
+        public override Transform GetRootTransform() {
+            return _root;
         }
 
         public void Init(IHero data) {
             _data = data;
             _aliveEntity.SetMaxHealth(data.Health);
             _aliveEntity.SetAlive();
+            SubscribeEvents();
             UpdateView();
+        }
+
+        protected override void OnDeath(Transform killer) {
+            _root.gameObject.SetActive(false);
+            UnsubscribeEvents();
         }
 
         private void UpdateView() {
@@ -36,27 +45,30 @@ namespace Game.View.Battle{
         internal void Unselect(Material unselectMat) {
             _renderer.material = unselectMat;
         }
-
+        
         internal abstract bool TrySelect(ICardAction actionCardData, Material selectMat);
 
-        internal void PlayAttackOnHero(Vector3 wPos, int count = 1, float dur = 0.2f) {
+        internal Sequence PlayAttackOnHero(Vector3 wPos, int slotStart = 0, int slotEnd = 0, UnityAction onAttack = null, float dur = 0.2f) {
             wPos.z -= 0.2f;
             var startPos = GetRootWorldPosition();
             Debug.Log($"play anim Hero {gameObject.name} fromPos = {startPos} toPos = {wPos}");
-
+            var delay = dur;
             Sequence attackSequence = DOTween.Sequence();
             var rTrans = _renderer.transform;
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = slotStart; i <= slotEnd; i++) {
+                _chargeSlots.PlayAttackAnimation(i, delay, dur);
                 attackSequence.Append(rTrans.DOMove(wPos, dur));
-                attackSequence.AppendCallback(() => Debug.Log("Attack"));
+                attackSequence.AppendCallback(() => onAttack?.Invoke());
                 attackSequence.Append(rTrans.DOMove(startPos, dur));
+                delay += 2*dur;
             }
 
             attackSequence.Play();
+
+            return attackSequence;
         }
 
-        internal void PlayAttackOnCommander(Vector3 wPos, int count = 1, float dur = 0.2f) {
+        internal Sequence PlayAttackOnCommander(Vector3 wPos, int slotStart = 0, int slotEnd = 0, UnityAction onAttack = null, float dur = 0.2f) {
             wPos.z -= 0.2f;
             var startPos = GetRootWorldPosition();
             var startRotation = _renderer.transform.eulerAngles;
@@ -64,15 +76,19 @@ namespace Game.View.Battle{
 
             Sequence attackSequence = DOTween.Sequence();
             var rTrans = _renderer.transform;
-            for (int i = 0; i < count; i++) {
+            var delay = dur;
+            for (int i = slotStart; i <= slotEnd; i++) {
+                _chargeSlots.PlayAttackAnimation(i, delay, dur);
                 attackSequence.Append(rTrans.DOMove(wPos, dur));
                 attackSequence.Join(rTrans.DORotate(new Vector3(startRotation.x, startRotation.y, -180), dur));
-                attackSequence.AppendCallback(() => Debug.Log("Attack"));
+                attackSequence.AppendCallback(() => onAttack?.Invoke());
                 attackSequence.Append(rTrans.DOMove(startPos, dur));
                 attackSequence.Join(rTrans.DORotate(startRotation, dur));
+                delay += 2*dur;
             }
 
             attackSequence.Play();
+            return attackSequence;
         }
     }
 

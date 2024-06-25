@@ -4,24 +4,32 @@ using UnityEngine;
 
 namespace Game.View.Battle{
 
-    public class CommanderCard : MonoBehaviour {
+    public class CommanderCard : BaseAliveCard
+    {
+        [SerializeField] protected Transform _root;
         [SerializeField] protected Renderer _renderer;
-        [SerializeField] TMP_Text _hpTxt;
         [SerializeField] TMP_Text _nameTxt;
-        [SerializeField] private AliveEntity _aliveEntity;
 
-        public IAliveEntity AliveEntity => _aliveEntity;
-
-        public void Init(ICommander data) { 
+        public void Init(ICommander data) {
             _hpTxt.text = data.Health.ToString();
             _nameTxt.text = data.Name;
             _aliveEntity.SetMaxHealth(data.Health);
             _aliveEntity.SetAlive();
+            SubscribeEvents();
         }
 
-        internal Vector3 GetRootWorldPosition()
-        {
+        protected override void OnDeath(Transform killer) {
+            _root.gameObject.SetActive(false);
+            UnsubscribeEvents();
+        }
+
+
+        internal  Vector3 GetRootWorldPosition() {
             return _renderer.transform.position;
+        }
+
+        public override Transform GetRootTransform() {
+            return _root;
         }
     }
 

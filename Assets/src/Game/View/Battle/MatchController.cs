@@ -1,4 +1,5 @@
-﻿using Game.Model.Interface;
+﻿using DG.Tweening;
+using Game.Model.Interface;
 using UnityEngine;
 
 namespace Game.View.Battle{
@@ -50,11 +51,17 @@ namespace Game.View.Battle{
                     if (isAttackHero) {
                         var cardEnemy = _enemyHeroCards.GetCard(index);
                         var toPos = cardEnemy.GetRootWorldPosition();
-                        cardPlayer.PlayAttackOnHero(toPos, 5);
+                        cardPlayer.PlayAttackOnHero(toPos, 0, 3, () => { ApplyAttack(cardPlayer, cardEnemy, 5); })
+                                  .OnComplete(() => {
+                                      toPos = _enemyCommander.GetRootWorldPosition();
+                                      cardPlayer.PlayAttackOnHero(
+                                          toPos, 4, 4, () => { ApplyAttack(_enemyCommander, cardEnemy, 5); });
+                                  });
                     }
                     else {
                         var toPos = _enemyCommander.GetRootWorldPosition();
-                        cardPlayer.PlayAttackOnCommander(toPos, 5);
+                        cardPlayer.PlayAttackOnCommander(
+                            toPos, 0, 4, () => { ApplyAttack(cardPlayer, _enemyCommander, 5); });
                     }
                 }
                 else {
@@ -64,15 +71,26 @@ namespace Game.View.Battle{
                     {
                         var cardEnemy = _playerHeroCards.GetCard(index);
                         var toPos = cardEnemy.GetRootWorldPosition();
-                        cardPlayer.PlayAttackOnHero(toPos, 5);
+                        cardPlayer.PlayAttackOnHero(toPos, 0, 3, () => { ApplyAttack(cardPlayer, cardEnemy, 5); })
+                                   .OnComplete(() => { 
+                                        toPos = _playerCommander.GetRootWorldPosition();
+                                        cardPlayer.PlayAttackOnCommander(
+                                            toPos, 4, 4, () => { ApplyAttack(cardPlayer, _playerCommander, 5); });
+                                   });
                     }
                     else
                     {
                         var toPos = _playerCommander.GetRootWorldPosition();
-                        cardPlayer.PlayAttackOnCommander(toPos, 5);
+                        cardPlayer.PlayAttackOnCommander(toPos, 0, 4, () => {
+                            ApplyAttack(cardPlayer, _playerCommander, 5);
+                        });
                     }
                 }
             }
+        }
+
+        void ApplyAttack(IAliveCard fromCard, IAliveCard toCard, float damage) {
+            toCard.AliveEntity.ApplyDamage(damage, fromCard.GetRootTransform());
         }
 
 //#endif

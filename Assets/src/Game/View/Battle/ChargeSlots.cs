@@ -23,6 +23,11 @@ namespace Game.View.Battle{
             } 
         }
 
+
+        internal void  PlayAttackAnimation(int slotIndex, float delay,  float dur = 0.2f) {
+            _slots[slotIndex].PlayAttackAnimation(delay, dur);
+        }
+
     }
 
 }
