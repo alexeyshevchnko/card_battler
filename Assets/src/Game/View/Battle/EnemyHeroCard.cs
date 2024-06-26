@@ -1,4 +1,5 @@
 ﻿using Game.Model.Interface;
+using Game.Model.Type;
 using UnityEngine;
 
 namespace Game.View.Battle {
@@ -14,7 +15,6 @@ namespace Game.View.Battle {
 
             return false;
         }
-
     }
 
 }

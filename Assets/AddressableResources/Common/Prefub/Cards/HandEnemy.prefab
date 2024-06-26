@@ -230,8 +230,6 @@ MonoBehaviour:
   - {fileID: 6795676918274820414}
   - {fileID: 3184303687682310252}
   _lvlTxt: {fileID: 453467813850136191}
-  _dragPositionZ: -2
-  _dragScale: {x: 2, y: 2, z: 2}
 --- !u!1 &6115273671170688023
 GameObject:
   m_ObjectHideFlags: 0

@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133190703}
   - component: {fileID: 133190704}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HandEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 385903233}
   - component: {fileID: 385903234}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HerosEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814531407}
   - component: {fileID: 814531408}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -450,6 +451,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1526625273
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1720959196}
   - component: {fileID: 1720959197}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1910194286}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: _deck_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2123398032}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: _discardPile_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,6 +925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCommanderCard
       objectReference: {fileID: 0}
+    - target: {fileID: 3236601412436490257, guid: 560babb630874dd4fa5705addaad08aa, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -951,7 +972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5531581203219524581}
   - component: {fileID: 529093284470333014}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,6 +1019,10 @@ PrefabInstance:
     - target: {fileID: 6444399379235921425, guid: 5afb1558de16d9d428374f3afb55a4f3, type: 3}
       propertyPath: m_Name
       value: EnemyCommanderCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444399379235921425, guid: 5afb1558de16d9d428374f3afb55a4f3, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7398355232421392827, guid: 5afb1558de16d9d428374f3afb55a4f3, type: 3}
       propertyPath: m_Pivot.x
@@ -1077,6 +1102,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7398355232421392827, guid: 5afb1558de16d9d428374f3afb55a4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970379285994364123, guid: 5afb1558de16d9d428374f3afb55a4f3, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1172,7 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2843504345906936554}
   - component: {fileID: 3918433416247322193}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: _hand_Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7816593396001497936}
   - component: {fileID: 7816593396001497937}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HerosPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7994484933594650915}
   - component: {fileID: 7994484933594650916}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HandPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,7 +1499,7 @@ GameObject:
   - component: {fileID: 3633409584307324395}
   - component: {fileID: 6074104109326220}
   - component: {fileID: 8227724773355343520}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1489,7 +1518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2

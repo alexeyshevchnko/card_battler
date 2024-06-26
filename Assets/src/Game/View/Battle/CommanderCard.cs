@@ -1,11 +1,11 @@
 ﻿using Game.Model.Interface;
+using Game.Model.Type;
 using TMPro;
 using UnityEngine;
 
 namespace Game.View.Battle{
 
-    public class CommanderCard : BaseAliveCard
-    {
+    public class CommanderCard : BaseAliveCard {
         [SerializeField] protected Transform _root;
         [SerializeField] protected Renderer _renderer;
         [SerializeField] TMP_Text _nameTxt;
@@ -23,8 +23,11 @@ namespace Game.View.Battle{
             UnsubscribeEvents();
         }
 
+        public override CardMechanicType CardMechanicType() {
+            return Model.Type.CardMechanicType.Commander;
+        }
 
-        internal  Vector3 GetRootWorldPosition() {
+        internal Vector3 GetRootWorldPosition() {
             return _renderer.transform.position;
         }
 

@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 namespace Game.View.Battle {
 
-    public class PlayerHandCard : HandCard, IDragHandler, IEndDragHandler, IBeginDragHandler {
+    public class PlayerHandCard : HandCard, IDragHandler, IEndDragHandler, IBeginDragHandler, ISelectedCard {
+        [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _dragPositionZ = -2;
         [SerializeField] private Vector3 _dragScale = Vector3.one * 2;
+        private Transform _originalParent;
 
         private Canvas _canvas;
         private Vector3 _startDragPosition;
         private Transform _originalDragParent;
 
         protected override void Awake() {
+            _canvasGroup.blocksRaycasts = true;
             base.Awake();
             _canvas = GetComponentInParent<Canvas>();
             if (_canvas == null) {
@@ -19,15 +23,20 @@ namespace Game.View.Battle {
             }
         }
 
-        public void OnBeginDrag(PointerEventData eventData) {
-            _startDragPosition = _root.position;
-            _originalDragParent = _root.parent;
-            _root.localScale = _dragScale;
-            _root.SetParent(_canvas.transform, true);
-            MatchController.Instance.SelectEnableHero(_data);
+        
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            _canvasGroup.blocksRaycasts = false;
+            _startDragPosition = transform.position;
+            _originalParent = transform.parent;
+            transform.SetParent(transform.parent.root);
+            //transform.localScale = _dragScale;
+            transform.SetAsLastSibling();  
         }
 
-        public void OnDrag(PointerEventData eventData) {
+        public void OnDrag(PointerEventData eventData)
+        {
             Vector3 newPosition;
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
                 _canvas.transform as RectTransform,
@@ -36,14 +45,23 @@ namespace Game.View.Battle {
                 out newPosition
             );
             newPosition.z = _dragPositionZ;
-            _root.position = newPosition;
+            transform.position = newPosition;
         }
 
-        public void OnEndDrag(PointerEventData eventData) {
-            _root.SetParent(_originalDragParent, true);
-            _root.localScale = Vector3.one;
-            _root.position = _startDragPosition;
-            MatchController.Instance.UnselectAllHero();
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<HeroCard>() != null)
+            {
+                Debug.Log("Dropped on: " + eventData.pointerEnter.name); 
+            }
+            else
+            {
+                Debug.Log("Not dropped on a valid slot, returning to original position"); 
+            }
+
+            transform.SetParent(_originalParent);
+            transform.position = _startDragPosition;
+            _canvasGroup.blocksRaycasts = true;
         }
     }
 

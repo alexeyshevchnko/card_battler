@@ -1921,9 +1921,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7569869097177678294}
-  - component: {fileID: 8276447152105763050}
   - component: {fileID: 1972731245803925092}
   - component: {fileID: 4163048486247094569}
+  - component: {fileID: 7332500030936870330}
   m_Layer: 0
   m_Name: HeroEnemy
   m_TagString: Untagged
@@ -1951,16 +1951,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1.65}
+  m_SizeDelta: {x: 1.27, y: 1.71}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8276447152105763050
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8994247737932255071}
-  m_CullTransparentMesh: 1
 --- !u!114 &1972731245803925092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,6 +1986,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _debugMode: 1
+--- !u!225 &7332500030936870330
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994247737932255071}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9206105103334950607
 GameObject:
   m_ObjectHideFlags: 0

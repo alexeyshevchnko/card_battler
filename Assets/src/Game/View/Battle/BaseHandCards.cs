@@ -28,14 +28,15 @@ namespace Game.View.Battle {
 
         protected void CreateCard() {
             _cards = new List<HandCard>();
-            foreach (var cardData in _data)
-            {
+            for (int i = 0; i < _data.Count; i++) {
+                var cardData = _data[i];
                 var go = Instantiate(_cardPref, _root);
                 go.transform.position = _deck.position;
                 var view = go.GetComponent<HandCard>();
-                view.Init(cardData);
+                view.Init(cardData, i);
                 _cards.Add(view);
             }
+           
         }
 
         protected virtual void ResetView() {

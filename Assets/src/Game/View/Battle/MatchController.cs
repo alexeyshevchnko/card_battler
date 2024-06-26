@@ -16,6 +16,9 @@ namespace Game.View.Battle{
         [SerializeField] private EnemyHeroCards _enemyHeroCards;
         [SerializeField] private PlayerHeroCards _playerHeroCards;
 
+        private ISelectedCard _selectedCard;
+        public ISelectedCard SelectedCard => _selectedCard;
+
         private void Awake() {
             Instance = this;
         }
@@ -29,14 +32,21 @@ namespace Game.View.Battle{
             _playerHeroCards.Init(Loader.BattleController.PlayerHeroes);
         }
 
-        internal void SelectEnableHero(ICardAction data) {
-            _enemyHeroCards.SelectEnableHero(data);
-            _playerHeroCards.SelectEnableHero(data);
+        private void SelectEnableHero(ISelectedCard heroCard) {
+            _enemyHeroCards.SelectEnableHero(heroCard.Data);
+            _playerHeroCards.SelectEnableHero(heroCard.Data);
         }
 
         internal void UnselectAllHero() {
             _enemyHeroCards.UnselectAllHero();
             _playerHeroCards.UnselectAllHero();
+        }
+
+        internal void SetDragPlayerCard(ISelectedCard heroCard) {
+            _selectedCard = heroCard;
+            if (heroCard != null) {
+                SelectEnableHero(heroCard);
+            }
         }
 
 //#if UNITY_EDITOR

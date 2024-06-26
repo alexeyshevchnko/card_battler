@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System.Globalization;
+using Game.Model.Type;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Game.View.Battle{
 
         private bool _isSubscribedEvents;
 
-
+        public abstract CardMechanicType CardMechanicType();
         public abstract Transform GetRootTransform();
 
         protected virtual void SubscribeEvents() {

@@ -2,18 +2,21 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Game.Model.Type;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Game.View.Battle{
 
-    public abstract class HeroCard : BaseAliveCard
+    public abstract class HeroCard : BaseAliveCard, IDropHandler
     {
         [SerializeField] protected Transform _root;
         [SerializeField] protected Renderer _renderer;
         [SerializeField] private TMP_Text _nameTxt;
         [SerializeField] private ChargeSlots _chargeSlots;
         
-        private IHero _data; 
+        private IHero _data;
+        private int _index;
 
         internal Vector3 GetRootWorldPosition() {
             return _renderer.transform.position;
@@ -23,8 +26,13 @@ namespace Game.View.Battle{
             return _root;
         }
 
-        public void Init(IHero data) {
+        public override CardMechanicType CardMechanicType() {
+            return Model.Type.CardMechanicType.Hero;
+        }
+
+        public void Init(IHero data, int index) {
             _data = data;
+            _index = index;
             _aliveEntity.SetMaxHealth(data.Health);
             _aliveEntity.SetAlive();
             SubscribeEvents();
@@ -90,6 +98,23 @@ namespace Game.View.Battle{
             attackSequence.Play();
             return attackSequence;
         }
-    }
 
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            Debug.LogError("OnDrop " + gameObject.name + " index = "+ _index);
+            // GameObject droppedObject = eventData.pointerDrag;
+            // if (droppedObject != null)
+            // {
+            //     PlayerHandCard card = droppedObject.GetComponent<PlayerHandCard>();
+            //     if (card != null)
+            //     {
+            //         card.transform.SetParent(transform, true);
+            //         card.transform.localPosition = Vector3.zero;
+            //     }
+            // }
+        }
+ 
+    }
+     
 }

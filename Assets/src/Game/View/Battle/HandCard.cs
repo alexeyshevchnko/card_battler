@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Game.View.Battle {
     public class HandCard : MonoBehaviour {
+        public int Index => _index;
+        public ICardAction Data => _data;
+
         [SerializeField] protected Transform _root;
         [SerializeField] TMP_Text _effectValTxt;
         [SerializeField] TMP_Text _nameTxt;
@@ -13,10 +16,11 @@ namespace Game.View.Battle {
         [SerializeField] TMP_Text _lvlTxt;
 
         protected ICardAction _data;
-
+        private int _index;
+        
         protected virtual void Awake() { }
 
-        public void Init(ICardAction data) {
+        public void Init(ICardAction data, int index) {
             _data = data;
             UpdateView();
         }
