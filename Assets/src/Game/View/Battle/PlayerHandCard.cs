@@ -32,7 +32,9 @@ namespace Game.View.Battle {
             _originalParent = transform.parent;
             transform.SetParent(transform.parent.root);
             //transform.localScale = _dragScale;
-            transform.SetAsLastSibling();  
+            transform.SetAsLastSibling();
+
+            OnDrag(eventData);
         }
 
         public void OnDrag(PointerEventData eventData)
