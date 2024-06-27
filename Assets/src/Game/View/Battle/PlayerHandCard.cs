@@ -12,57 +12,61 @@ namespace Game.View.Battle {
 
         private Canvas _canvas;
         private Vector3 _startDragPosition;
-        private Transform _originalDragParent;
+        private Vector3 _startDragScale;
+        private Transform _myTrans;
+        private Transform _canvasTrans;
+        private RectTransform _canvasRectTrans;
+
 
         protected override void Awake() {
+            _myTrans = transform;
             _canvasGroup.blocksRaycasts = true;
             base.Awake();
             _canvas = GetComponentInParent<Canvas>();
             if (_canvas == null) {
                 Debug.LogError("Canvas not found in parent hierarchy.");
             }
+            else {
+                _canvasTrans = _canvas.transform;
+                _canvasRectTrans = _canvasTrans as RectTransform;
+            }
         }
 
-        
-
-        public void OnBeginDrag(PointerEventData eventData)
-        {
+        public void OnBeginDrag(PointerEventData eventData) {
             _canvasGroup.blocksRaycasts = false;
-            _startDragPosition = transform.position;
-            _originalParent = transform.parent;
-            transform.SetParent(transform.parent.root);
-            //transform.localScale = _dragScale;
-            transform.SetAsLastSibling();
-
+            _startDragPosition = _myTrans.position;
+            _startDragScale = _myTrans.localScale;
+            _originalParent = _myTrans.parent;
+            _myTrans.SetParent(_canvasTrans);
+            _myTrans.localScale = _dragScale;
+            _myTrans.SetAsLastSibling();
             OnDrag(eventData);
         }
 
-        public void OnDrag(PointerEventData eventData)
-        {
-            Vector3 newPosition;
-            RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                _canvas.transform as RectTransform,
-                eventData.position,
-                eventData.pressEventCamera,
-                out newPosition
-            );
-            newPosition.z = _dragPositionZ;
-            transform.position = newPosition;
+        public void OnDrag(PointerEventData eventData) {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _canvasRectTrans,
+                Input.mousePosition,
+                _canvas.worldCamera,
+                out var pos);
+            _myTrans.position = _canvasTrans.TransformPoint(pos);
+
+            Vector3 newPos = _myTrans.localPosition;
+            newPos.z = _dragPositionZ;
+            _myTrans.localPosition = newPos;
         }
 
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<HeroCard>() != null)
-            {
-                Debug.Log("Dropped on: " + eventData.pointerEnter.name); 
+        public void OnEndDrag(PointerEventData eventData) {
+            if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<HeroCard>() != null) {
+                Debug.Log("Dropped on: " + eventData.pointerEnter.name);
             }
-            else
-            {
-                Debug.Log("Not dropped on a valid slot, returning to original position"); 
+            else {
+                Debug.Log("Not dropped on a valid slot, returning to original position");
             }
 
-            transform.SetParent(_originalParent);
-            transform.position = _startDragPosition;
+            _myTrans.SetParent(_originalParent);
+            _myTrans.position = _startDragPosition;
+            _myTrans.localScale = _startDragScale;
             _canvasGroup.blocksRaycasts = true;
         }
     }

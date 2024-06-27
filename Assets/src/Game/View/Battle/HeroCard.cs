@@ -6,15 +6,14 @@ using Game.Model.Type;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Game.View.Battle{
+namespace Game.View.Battle {
 
-    public abstract class HeroCard : BaseAliveCard, IDropHandler
-    {
+    public abstract class HeroCard : BaseAliveCard, IDropHandler {
         [SerializeField] protected Transform _root;
         [SerializeField] protected Renderer _renderer;
         [SerializeField] private TMP_Text _nameTxt;
         [SerializeField] private ChargeSlots _chargeSlots;
-        
+
         private IHero _data;
         private int _index;
 
@@ -53,10 +52,11 @@ namespace Game.View.Battle{
         internal void Unselect(Material unselectMat) {
             _renderer.material = unselectMat;
         }
-        
+
         internal abstract bool TrySelect(ICardAction actionCardData, Material selectMat);
 
-        internal Sequence PlayAttackOnHero(Vector3 wPos, int slotStart = 0, int slotEnd = 0, UnityAction onAttack = null, float dur = 0.2f) {
+        internal Sequence PlayAttackOnHero(Vector3 wPos, int slotStart = 0, int slotEnd = 0,
+                                           UnityAction onAttack = null, float dur = 0.2f) {
             wPos.z -= 0.2f;
             var startPos = GetRootWorldPosition();
             Debug.Log($"play anim Hero {gameObject.name} fromPos = {startPos} toPos = {wPos}");
@@ -68,7 +68,7 @@ namespace Game.View.Battle{
                 attackSequence.Append(rTrans.DOMove(wPos, dur));
                 attackSequence.AppendCallback(() => onAttack?.Invoke());
                 attackSequence.Append(rTrans.DOMove(startPos, dur));
-                delay += 2*dur;
+                delay += 2 * dur;
             }
 
             attackSequence.Play();
@@ -76,7 +76,8 @@ namespace Game.View.Battle{
             return attackSequence;
         }
 
-        internal Sequence PlayAttackOnCommander(Vector3 wPos, int slotStart = 0, int slotEnd = 0, UnityAction onAttack = null, float dur = 0.2f) {
+        internal Sequence PlayAttackOnCommander(Vector3 wPos, int slotStart = 0, int slotEnd = 0,
+                                                UnityAction onAttack = null, float dur = 0.2f) {
             wPos.z -= 0.2f;
             var startPos = GetRootWorldPosition();
             var startRotation = _renderer.transform.eulerAngles;
@@ -92,7 +93,7 @@ namespace Game.View.Battle{
                 attackSequence.AppendCallback(() => onAttack?.Invoke());
                 attackSequence.Append(rTrans.DOMove(startPos, dur));
                 attackSequence.Join(rTrans.DORotate(startRotation, dur));
-                delay += 2*dur;
+                delay += 2 * dur;
             }
 
             attackSequence.Play();
@@ -100,21 +101,10 @@ namespace Game.View.Battle{
         }
 
 
-        public void OnDrop(PointerEventData eventData)
-        {
-            Debug.LogError("OnDrop " + gameObject.name + " index = "+ _index);
-            // GameObject droppedObject = eventData.pointerDrag;
-            // if (droppedObject != null)
-            // {
-            //     PlayerHandCard card = droppedObject.GetComponent<PlayerHandCard>();
-            //     if (card != null)
-            //     {
-            //         card.transform.SetParent(transform, true);
-            //         card.transform.localPosition = Vector3.zero;
-            //     }
-            // }
+        public void OnDrop(PointerEventData eventData) {
+            Debug.LogError("OnDrop " + gameObject.name + " index = " + _index);
         }
- 
+
     }
-     
+
 }

@@ -60,8 +60,9 @@ MonoBehaviour:
   - {fileID: 867418734452563686}
   - {fileID: 9112545445955147700}
   _lvlTxt: {fileID: 104707409439245219}
+  _rectTransform: {fileID: 7856112368597897270}
   _canvasGroup: {fileID: -5529227520516459187}
-  _dragPositionZ: -2
+  _dragPositionZ: -0.1
   _dragScale: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!225 &-5529227520516459187
 CanvasGroup:
