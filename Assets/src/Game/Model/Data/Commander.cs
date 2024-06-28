@@ -10,11 +10,13 @@ namespace Game.Model.Data{
         [SerializeField] protected int _health;
         [SerializeField] protected CardType _cardType;
         [SerializeField] protected CardMechanicType _cardMechanicType;
+        [SerializeField] private PlayerType _playerType;
 
         public string Name => _name;
         public CardType CardType => _cardType;
         public CardMechanicType CardMechanicType => _cardMechanicType;
         public int Health => _health;
+        public PlayerType PlayerType => _playerType;
 
         public void SetJson(string val) {
             Commander temp = JsonUtility.FromJson<Commander>(val);
@@ -22,6 +24,7 @@ namespace Game.Model.Data{
             _health = temp._health;
             _cardType = temp._cardType;
             _cardMechanicType = temp._cardMechanicType;
+            _playerType = temp.PlayerType;
         }
 
         public string GetJson() {

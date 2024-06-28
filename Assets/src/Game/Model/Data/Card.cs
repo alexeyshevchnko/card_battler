@@ -11,12 +11,14 @@ namespace Game.Model.Data{
         [SerializeField] protected int _level;
         [SerializeField] protected CardType _cardType;
         [SerializeField] protected CardMechanicType _cardMechanicType;
+        [SerializeField] protected PlayerType _playerType;
 
         public string Name => _name;
         public int Level => _level;
         public int Stars => _stars;
         public CardType CardType => _cardType;
         public CardMechanicType CardMechanicType => _cardMechanicType;
+        public PlayerType PlayerType => _playerType;
     }
 
 }

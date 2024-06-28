@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.View.Battle {
-    public class HandCard : MonoBehaviour {
+    public class HandCard : MonoBehaviour, ISelectedCard {
         public int Index => _index;
         public ICardAction Data => _data;
 
@@ -17,7 +17,7 @@ namespace Game.View.Battle {
 
         protected ICardAction _data;
         private int _index;
-        
+
         protected virtual void Awake() { }
 
         public void Init(ICardAction data, int index) {

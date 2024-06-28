@@ -53,7 +53,56 @@ namespace Game.View.Battle {
             _renderer.material = unselectMat;
         }
 
-        internal abstract bool TrySelect(ICardAction actionCardData, Material selectMat);
+        internal virtual bool IsApply(ICardAction actionCardData) {
+            var heroType = _data.PlayerType;
+            var cardActionType = actionCardData.PlayerType;
+            var effectType = actionCardData.FirstEffect.EffectType;
+
+            if (cardActionType == PlayerType.Player) {
+                if (heroType == PlayerType.Player && effectType == EffectType.Attack) {
+                    return false;
+                }
+
+                if (heroType == PlayerType.Player && effectType == EffectType.Healing) {
+                    return true;
+                }
+
+                if (heroType == PlayerType.Enemy && effectType == EffectType.Healing) {
+                    return false;
+                }
+
+                if (heroType == PlayerType.Enemy && effectType == EffectType.Attack) {
+                    return true;
+                }
+            }
+
+            /////
+
+            if (cardActionType == PlayerType.Enemy) {
+                if (heroType == PlayerType.Player && effectType == EffectType.Attack) {
+                    return true;
+                }
+
+                if (heroType == PlayerType.Player && effectType == EffectType.Healing) {
+                    return false;
+                }
+
+                if (heroType == PlayerType.Enemy && effectType == EffectType.Healing) {
+                    return true;
+                }
+
+                if (heroType == PlayerType.Enemy && effectType == EffectType.Attack) {
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
+        internal virtual void TrySelect(ICardAction actionCardData, Material selectMat) {
+            if(IsApply(actionCardData))
+                _renderer.material = selectMat;
+        }
 
         internal Sequence PlayAttackOnHero(Vector3 wPos, int slotStart = 0, int slotEnd = 0,
                                            UnityAction onAttack = null, float dur = 0.2f) {
@@ -102,7 +151,10 @@ namespace Game.View.Battle {
 
 
         public void OnDrop(PointerEventData eventData) {
-            Debug.LogError("OnDrop " + gameObject.name + " index = " + _index);
+            var actionCardData = MatchController.Instance.SelectedCard.Data;
+            MatchController.Instance.SetSelectCard(null);
+            if (IsApply(actionCardData))
+                Debug.LogError("OnDrop " + gameObject.name + " index = " + _index);
         }
 
     }

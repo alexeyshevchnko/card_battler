@@ -42,7 +42,7 @@ namespace Game.View.Battle{
             _playerHeroCards.UnselectAllHero();
         }
 
-        internal void SetDragPlayerCard(ISelectedCard heroCard) {
+        internal void SetSelectCard(ISelectedCard heroCard) {
             _selectedCard = heroCard;
             if (heroCard != null) {
                 SelectEnableHero(heroCard);

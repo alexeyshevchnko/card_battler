@@ -17,6 +17,7 @@ namespace Game.Model.Data{
             _cardType = temp._cardType;
             _cardMechanicType = temp._cardMechanicType;
             _effects = temp._effects;
+            _playerType = temp.PlayerType;
         }
     }
 }

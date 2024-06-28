@@ -1,5 +1,5 @@
 ﻿namespace Game.Model.Interface{
-    public interface ICommander : IBaseICard {
+    public interface ICommander : IBaseCard {
         int Health { get; }
     }
 }

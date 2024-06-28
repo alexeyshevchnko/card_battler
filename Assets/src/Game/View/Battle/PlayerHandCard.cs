@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.View.Battle {
 
-    public class PlayerHandCard : HandCard, IDragHandler, IEndDragHandler, IBeginDragHandler, ISelectedCard {
+    public class PlayerHandCard : HandCard, IDragHandler, IEndDragHandler, IBeginDragHandler {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _dragPositionZ = -2;
         [SerializeField] private Vector3 _dragScale = Vector3.one * 2;
@@ -33,6 +33,7 @@ namespace Game.View.Battle {
         }
 
         public void OnBeginDrag(PointerEventData eventData) {
+            MatchController.Instance.SetSelectCard(this);
             _canvasGroup.blocksRaycasts = false;
             _startDragPosition = _myTrans.position;
             _startDragScale = _myTrans.localScale;
@@ -68,6 +69,7 @@ namespace Game.View.Battle {
             _myTrans.position = _startDragPosition;
             _myTrans.localScale = _startDragScale;
             _canvasGroup.blocksRaycasts = true;
+            MatchController.Instance.UnselectAllHero();
         }
     }
 

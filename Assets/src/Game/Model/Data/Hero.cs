@@ -38,6 +38,7 @@ namespace Game.Model.Data{
             _fullAttack = temp._fullAttack;
             _cardType = temp._cardType;
             _cardMechanicType = temp._cardMechanicType;
+            _playerType = temp.PlayerType;
 
             ChangedFullAttackEvent?.Invoke(_fullAttack);
         }

@@ -51,15 +51,15 @@ namespace Game.Model.Source{
                 Debug.Log("generate configs.....");
 
                 var countHero = Random.Range(1, Settings.MAX_HERO_COUNT + 1);
-                _playerHeroes = GenerateHeroes(countHero);
-                _enemyHeroes = GenerateHeroes(countHero);
+                _playerHeroes = GenerateHeroes(countHero, PlayerType.Player);
+                _enemyHeroes = GenerateHeroes(countHero, PlayerType.Enemy);
 
-                _playerCommander = GenerateCommander();
-                _enemyCommander = GenerateCommander();
+                _playerCommander = GenerateCommander(PlayerType.Player);
+                _enemyCommander = GenerateCommander(PlayerType.Enemy);
 
                 var countDeck = Random.Range(5, 11);
-                _playerDeck = GenerateDeck(countDeck);
-                _enemyDeck = GenerateDeck(countDeck);
+                _playerDeck = GenerateDeck(countDeck, PlayerType.Player);
+                _enemyDeck = GenerateDeck(countDeck, PlayerType.Enemy);
 
                 _playerHead = GenerateHead(_playerDeck, Settings.HAND_CART_COUNT);
                 _enemyHead = GenerateHead(_enemyDeck, Settings.HAND_CART_COUNT);
@@ -84,11 +84,12 @@ namespace Game.Model.Source{
         //     }
         }
 
-        Commander GenerateCommander() {
+        Commander GenerateCommander(PlayerType playerType) {
             var rez = new Commander();
             int cardTypeValue = Random.Range(Settings.COMMANDER_MIN_ID, Settings.COMMANDER_MAX_ID + 1);
             var json = @"{
                 ""_name"": """ + (CardType) cardTypeValue + @""",
+                ""_playerType"": """ + (byte)playerType + @""",
                 ""_level"": -1,
                 ""_health"": " + Settings.COMMANDER_HP + @",
                 ""_cardType"": " + cardTypeValue + @",
@@ -98,7 +99,7 @@ namespace Game.Model.Source{
             return rez;
         }
 
-        HeroManager GenerateHeroes(int count) {
+        HeroManager GenerateHeroes(int count, PlayerType playerType) {
             var list = new List<Hero>();
 
             for (var i = 0; i < count; i++) {
@@ -106,6 +107,7 @@ namespace Game.Model.Source{
                 var cardTypeValue = Random.Range(Settings.HERO_MIN_ID, Settings.HERO_MAX_ID + 1);
                 var json = @"{
                             ""_name"": """ + (CardType)cardTypeValue + @""",
+                            ""_playerType"": """ + (byte)playerType + @""",
                             ""_stars"":" + Random.Range(1, 6) + @",
                             ""_level"": -1,
                             ""_health"": " + Random.Range(30, 41) + @",
@@ -120,7 +122,7 @@ namespace Game.Model.Source{
             return new HeroManager(list);
         }
 
-        ActionCardManager GenerateDeck(int count) {
+        ActionCardManager GenerateDeck(int count, PlayerType playerType) {
             var list = new List<CardAction>();
 
             for (var i = 0; i < count; i++) {
@@ -132,6 +134,7 @@ namespace Game.Model.Source{
                 var effectType = (effectValue > 0 ? (byte) EffectType.Healing : (byte) EffectType.Attack);
                 var json = @"{
                     ""_name"": """ + (CardMechanicType)mechanicTypeType + cardTypeValue.ToString() + @""",
+                    ""_playerType"": """ + (byte)playerType + @""",
                     ""_stars"": " + Random.Range(1, 6) + @",
                     ""_level"": -1,
                     ""_cardType"": " + cardTypeValue + @",
