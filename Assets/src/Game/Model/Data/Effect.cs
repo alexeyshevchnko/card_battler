@@ -12,6 +12,13 @@ namespace Game.Model.Data{
 
         public EffectType EffectType => _effectType;
         public int Value => _value;
+
+        public string ValueText {
+            get {
+                var prefix = _effectType == EffectType.Healing ? "+" : "-";
+                return $"{prefix}{_value}";
+            }
+        }
     }
 
 }

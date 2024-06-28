@@ -4,7 +4,8 @@ namespace Game.Model.Interface{
 
     public interface IEffect {
         EffectType EffectType { get; }
-        int Value { get; }
+        int Value { get; } 
+        string ValueText { get; }
     }
 
 }

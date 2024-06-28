@@ -57,14 +57,7 @@ namespace Game.View.Battle {
             _myTrans.localPosition = newPos;
         }
 
-        public void OnEndDrag(PointerEventData eventData) {
-            if (eventData.pointerEnter != null && eventData.pointerEnter.GetComponent<HeroCard>() != null) {
-                Debug.Log("Dropped on: " + eventData.pointerEnter.name);
-            }
-            else {
-                Debug.Log("Not dropped on a valid slot, returning to original position");
-            }
-
+        public void OnEndDrag(PointerEventData eventData) { 
             _myTrans.SetParent(_originalParent);
             _myTrans.position = _startDragPosition;
             _myTrans.localScale = _startDragScale;

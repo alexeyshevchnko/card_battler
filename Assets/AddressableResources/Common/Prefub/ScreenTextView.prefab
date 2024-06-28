@@ -47,5 +47,5 @@ MonoBehaviour:
   _pool:
     _prefab: {fileID: 5425469343021961436, guid: cb9387b69ab5bfb45ab7c8408eaf497b, type: 3}
     _allowResize: 1
-  _color: {r: 0.8792453, g: 0.1642363, b: 0.1642363, a: 1}
-  _randomX: 0.3
+  _colorDamage: {r: 1, g: 0, b: 0, a: 0}
+  _colorAdd: {r: 0, g: 1, b: 0.07642937, a: 0}

@@ -99,6 +99,23 @@ namespace Game.View.Battle {
             return false;
         }
 
+        internal virtual void Apply(ISelectedCard selectedCard) {
+            var actionCardData = selectedCard.Data;
+            var effectType = actionCardData.FirstEffect.EffectType;
+            var effectValue = actionCardData.FirstEffect.Value;
+
+            if (effectType == EffectType.Attack)
+            {
+                AliveEntity.ApplyDamage(effectValue, selectedCard.myTrans);
+            }
+
+            if (effectType == EffectType.Healing)
+            {
+                AliveEntity.ApplyDamage(-effectValue, selectedCard.myTrans);
+                //AliveEntity.Regeneration()
+            }
+        }
+
         internal virtual void TrySelect(ICardAction actionCardData, Material selectMat) {
             if(IsApply(actionCardData))
                 _renderer.material = selectMat;
@@ -151,10 +168,13 @@ namespace Game.View.Battle {
 
 
         public void OnDrop(PointerEventData eventData) {
-            var actionCardData = MatchController.Instance.SelectedCard.Data;
+            var selectedCard = MatchController.Instance.SelectedCard;
+            var actionCardData = selectedCard.Data;
             MatchController.Instance.SetSelectCard(null);
-            if (IsApply(actionCardData))
+            if (IsApply(actionCardData)) {
                 Debug.LogError("OnDrop " + gameObject.name + " index = " + _index);
+                Apply(selectedCard);
+            }
         }
 
     }

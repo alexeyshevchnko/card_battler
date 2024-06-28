@@ -60,7 +60,9 @@ MonoBehaviour:
   - {fileID: 867418734452563686}
   - {fileID: 9112545445955147700}
   _lvlTxt: {fileID: 104707409439245219}
-  _rectTransform: {fileID: 7856112368597897270}
+  _effectIon: {fileID: 9005409111479339600}
+  _effectHealingSprite: {fileID: -1190075409, guid: 4bb4635b6d8d4074597b370ef054cf14, type: 3}
+  _effectAttackSprite: {fileID: -511584628, guid: 4bb4635b6d8d4074597b370ef054cf14, type: 3}
   _canvasGroup: {fileID: -5529227520516459187}
   _dragPositionZ: -0.1
   _dragScale: {x: 1.5, y: 1.5, z: 1.5}
@@ -477,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3113094242994355831, guid: 4ea5d6c4f8851ab429baa80ad1bb05f3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -49.583
+      value: -0.266
       objectReference: {fileID: 0}
     - target: {fileID: 3113094242994355831, guid: 4ea5d6c4f8851ab429baa80ad1bb05f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -929,6 +931,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9005409111479339600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 208353448334676994, guid: 5c3a7dd07706acc46bd59529394ba5c6, type: 3}
+  m_PrefabInstance: {fileID: 9087590617319317074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &9115534133992600611

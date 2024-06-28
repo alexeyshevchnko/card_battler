@@ -1,4 +1,5 @@
 ﻿using Game.Model.Interface;
+using UnityEngine;
 
 namespace Game.View.Battle{
     
@@ -6,6 +7,7 @@ namespace Game.View.Battle{
     {
         int Index { get; }
         ICardAction Data { get; }
+        Transform myTrans { get; }
     }
     
 }

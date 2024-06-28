@@ -37,7 +37,11 @@ namespace Game.View.Battle{
 
         protected virtual void OnDamage(float damage) {
             _hpTxt.text = _aliveEntity.Health.ToString(CultureInfo.InvariantCulture);
-            ScreenTextView.Instance.ShowDamage(_center.position, damage);
+
+            if (damage > 0)
+                ScreenTextView.Instance.ShowDamage(_center.position, damage);
+            else
+                ScreenTextView.Instance.ShowAddHp(_center.position, -damage);
         }
 
         private void OnDestroy() {

@@ -60,6 +60,21 @@ namespace Game.View.Battle {
             HealthUpdateEvent?.Invoke(Health, -regenValue);
         }
 
+        void AddHealth(float val) {
+
+            if (val <= 0) {
+                Debug.LogError($"AddHealth val = {val}");
+            }
+
+            if (Health + val > MaxHealth) {
+                var newMaxHealth = Health + val;
+                SetMaxHealth(newMaxHealth);
+                Health += val;
+            }
+
+            HealthUpdateEvent?.Invoke(Health, val);
+        }
+
         public void SetAlive() {
             Health = _maxHealth;
             IsAlive = true;

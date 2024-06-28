@@ -230,6 +230,9 @@ MonoBehaviour:
   - {fileID: 6795676918274820414}
   - {fileID: 3184303687682310252}
   _lvlTxt: {fileID: 453467813850136191}
+  _effectIon: {fileID: 476810008686864137}
+  _effectHealingSprite: {fileID: -1190075409, guid: 4bb4635b6d8d4074597b370ef054cf14, type: 3}
+  _effectAttackSprite: {fileID: -511584628, guid: 4bb4635b6d8d4074597b370ef054cf14, type: 3}
 --- !u!1 &6115273671170688023
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +514,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3a7dd07706acc46bd59529394ba5c6, type: 3}
+--- !u!114 &476810008686864137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 208353448334676994, guid: 5c3a7dd07706acc46bd59529394ba5c6, type: 3}
+  m_PrefabInstance: {fileID: 322500462489563915}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1969172490157961669 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2245650812552397518, guid: 5c3a7dd07706acc46bd59529394ba5c6, type: 3}

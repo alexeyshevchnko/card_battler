@@ -126,12 +126,13 @@ namespace Game.Model.Source{
             var list = new List<CardAction>();
 
             for (var i = 0; i < count; i++) {
-                var effectValue = Random.Range(0, 100) > 50 ? Random.Range(-10, -4) : Random.Range(5, 11);
+                var effectType = Random.Range(0, 100) > 50 ? (byte) EffectType.Healing : (byte) EffectType.Attack;
+                var effectValue = Random.Range(5, 11);
                 var temp = new CardAction();
                 var cardTypeValue = Random.Range(Settings.EFFECT_MIN_ID, Settings.EFFECT_MAX_ID + 1);
                 var mechanicTypeType =
                     (effectValue > 0 ? (byte) CardMechanicType.Buff : (byte) CardMechanicType.DeBuff);
-                var effectType = (effectValue > 0 ? (byte) EffectType.Healing : (byte) EffectType.Attack);
+
                 var json = @"{
                     ""_name"": """ + (CardMechanicType)mechanicTypeType + cardTypeValue.ToString() + @""",
                     ""_playerType"": """ + (byte)playerType + @""",

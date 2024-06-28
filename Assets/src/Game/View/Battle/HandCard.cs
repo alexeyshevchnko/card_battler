@@ -8,12 +8,17 @@ namespace Game.View.Battle {
     public class HandCard : MonoBehaviour, ISelectedCard {
         public int Index => _index;
         public ICardAction Data => _data;
+        public Transform myTrans => transform;
 
         [SerializeField] protected Transform _root;
         [SerializeField] TMP_Text _effectValTxt;
         [SerializeField] TMP_Text _nameTxt;
         [SerializeField] List<Image> _starsIcons;
         [SerializeField] TMP_Text _lvlTxt;
+
+        [SerializeField] Image _effectIon;
+        [SerializeField] private Sprite _effectHealingSprite;
+        [SerializeField] private Sprite _effectAttackSprite;
 
         protected ICardAction _data;
         private int _index;
@@ -26,7 +31,12 @@ namespace Game.View.Battle {
         }
 
         private void UpdateView() {
-            _effectValTxt.text = _data.FirstEffect.Value.ToString();
+            var effect = _data.FirstEffect;
+            _effectIon.sprite = effect.EffectType == Model.Type.EffectType.Healing
+                ? _effectHealingSprite
+                : _effectAttackSprite;
+
+            _effectValTxt.text = effect.ValueText;
             _nameTxt.text = _data.Name;
             _lvlTxt.text = _data.Level.ToString();
 
